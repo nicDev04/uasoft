@@ -13,25 +13,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tbConsulta")
 
-
-
 public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idConsulta;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_id", unique = true)
-    private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "pet_id", unique = true)
-    private Pet pet;
-
-    @ManyToOne
-    @JoinColumn(name = "funcionario_id", unique = true)
-    private Funcionario funcionario;
 
     @Column(name = "dataConsulta")
     private LocalDate dataConsulta;
@@ -44,6 +30,18 @@ public class Consulta {
 
     @Column(name = "observacoes")
     private String observacoes;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", unique = true)
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id", unique = true)
+    private Pet pet;
+
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id", unique = true)
+    private Funcionario funcionario;
 
     public Consulta() {
     }

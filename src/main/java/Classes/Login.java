@@ -17,7 +17,7 @@ public class Login {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUsuario;
+    private long idLogin;
     
     @Column(name = "login")
     private String login;
@@ -40,12 +40,12 @@ public class Login {
         this.funcionario = funcionario;
     }
 
-    public long getIdUsuario() {
-        return idUsuario;
+    public long getIdLogin() {
+        return idLogin;
     }
 
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdLogin(long idLogin) {
+        this.idLogin = idLogin;
     }
 
     public String getLogin() {

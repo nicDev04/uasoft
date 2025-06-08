@@ -2,37 +2,71 @@ package Telas;
 
 import Classes.Cliente;
 import Classes.Consulta;
+import Classes.Especie;
 import Classes.Funcionario;
+import Classes.Grupo;
 import Classes.Login;
+import Classes.Marca;
 import Classes.Pet;
+import Classes.Produto;
+import Classes.Raca;
+import Classes.Venda;
 import ClassesDAO.ClienteDAO;
 import ClassesDAO.ConsultaDAO;
+import ClassesDAO.EspecieDAO;
 import ClassesDAO.FuncionarioDAO;
+import ClassesDAO.GrupoDAO;
+import ClassesDAO.MarcaDAO;
 import ClassesDAO.PetDAO;
+import ClassesDAO.ProdutoDAO;
+import ClassesDAO.RacaDAO;
+import ClassesDAO.VendaDAO;
 import Utilidades.Alerta;
 import Utilidades.Validacoes;
 //import Utilidades.Validacoes.FormatadorCampos;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import static java.awt.Font.DIALOG;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
 public class TelasCadastro extends javax.swing.JFrame {
-    
+
     private List<Cliente> listaCliente;
     private List<Pet> listaPet;
     private List<Pet> listaPetCliente;
     private List<Funcionario> listaVet;
+    private List<Produto> listaProdutos;
+    private List<Especie> listaEspecie;
+    private List<Raca> listaRacas;
+    private List<Grupo> listaGrupos;
+    private List<Marca> listaMarcas;
 
     public TelasCadastro(String optSelecionada) {
         initComponents();
         viewChangeCad(optSelecionada);
         this.listaCliente = ClienteDAO.listarClientes();
         this.listaPet = PetDAO.listarPets();
+        this.listaProdutos = ProdutoDAO.listarProduto();
+        this.listaVet = FuncionarioDAO.listarVeterinario();
+        this.listaEspecie = EspecieDAO.listarEspecie();
+        this.listaGrupos = GrupoDAO.listarGrupos();
+        this.listaMarcas = MarcaDAO.listarMarcas();
         montarCbxClienteConsulta();
         montarCbxVet(listaVet);
-        
+        montarCbxClienteVenda();
+        montarCbxProduto();
+        montarCbxClientePet();
+        montarCbxEspeciePet();
+        montarCbxGrupo();
+        montarCbxMarca();
+
 
         /*FormatadorCampos.aplicarFormatoMonetario(ftfValorConC);
         FormatadorCampos.aplicarFormatoMonetario(ftfValorMedC);
@@ -559,7 +593,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         cbxNomeTutorP.setEditable(true);
         cbxNomeTutorP.setMaximumRowCount(100);
-        cbxNomeTutorP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxNomeTutorP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste" }));
         cbxNomeTutorP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -569,7 +603,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         cbxSexoP.setEditable(true);
         cbxSexoP.setMaximumRowCount(100);
-        cbxSexoP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxSexoP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Fêmea", "Macho" }));
         cbxSexoP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -579,9 +613,14 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         cbxEspecieP.setEditable(true);
         cbxEspecieP.setMaximumRowCount(100);
-        cbxEspecieP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxEspecieP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste" }));
         cbxEspecieP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
+        cbxEspecieP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEspeciePItemStateChanged(evt);
+            }
+        });
 
         lblRacaP.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblRacaP.setForeground(new java.awt.Color(12, 134, 129));
@@ -589,7 +628,8 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         cbxRacaP.setEditable(true);
         cbxRacaP.setMaximumRowCount(100);
-        cbxRacaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxRacaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste" }));
+        cbxRacaP.setEnabled(false);
         cbxRacaP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -704,7 +744,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         cbxUniVendaPro.setEditable(true);
         cbxUniVendaPro.setMaximumRowCount(100);
-        cbxUniVendaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxUniVendaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "UN - Unidade", "CX - Caixa", "FR - Frasco", "BL - Blister", "CP - Comprimido", "ML - Mililitro", "L - Litro", "TB - Tubo", "GD - Gota", "SER - Seringa", "PCT - Pacote", "KG - Quilograma", "G - Grama", "SC - Saco", "PAR - Par", "DZ - Dúzia", "M - Metro", "ROLO - Rolo", "CART - Cartela", "BIS - Bisnaga", "AMP - Ampola" }));
         cbxUniVendaPro.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -856,7 +896,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         cbxSexoFun.setEditable(true);
         cbxSexoFun.setMaximumRowCount(100);
-        cbxSexoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxSexoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Feminino", "Masculino" }));
         cbxSexoFun.setFocusable(false);
         cbxPetC.setForeground(new Color(12, 134, 129));
 
@@ -1084,17 +1124,30 @@ public class TelasCadastro extends javax.swing.JFrame {
 
     private void cbxClienteCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxClienteCItemStateChanged
         cbxPetC.setEnabled(true);
-        
+
         Cliente clienteSelecionado = listaCliente.stream()
                 .filter(cliente -> cliente.getNomeC().equals(cbxClienteC.getSelectedItem().toString()))
                 .findFirst()
                 .orElse(null);
-        
+
         listaPet = PetDAO.listarPetsCliente(clienteSelecionado);
-        
+
         montarCbxPetConsulta(listaPet);
-        
+
     }//GEN-LAST:event_cbxClienteCItemStateChanged
+
+    private void cbxEspeciePItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEspeciePItemStateChanged
+        cbxRacaP.setEnabled(true);
+
+        Especie especieSelecionada = listaEspecie.stream()
+                    .filter(especie -> especie.getNomeEspecie().equals(cbxEspecieP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+        
+        listaRacas = RacaDAO.listarRaca(especieSelecionada);
+
+        montarCbxRaca(listaRacas);
+    }//GEN-LAST:event_cbxEspeciePItemStateChanged
 
     public void viewChangeCad(String cardName) {  //Método para mudar os cardLayout de acordo com os botões correspondentes
         CardLayout layout = (CardLayout) panelTelasCad.getLayout();
@@ -1123,32 +1176,32 @@ public class TelasCadastro extends javax.swing.JFrame {
 
             // Cadastro de nova consulta
             Consulta consulta = new Consulta();
-            
-            
+
             Cliente clienteSelecionado = listaCliente.stream()
                     .filter(cliente -> cliente.getNomeC().equals(cbxClienteC.getSelectedItem().toString()))
                     .findFirst()
                     .orElse(null);
-            
+
             Pet petSelecionado = listaPet.stream()
                     .filter(pet -> pet.getNomePet().equals(cbxPetC.getSelectedItem().toString()))
                     .findFirst()
                     .orElse(null);
-            
+
             Funcionario vetSelecionado = listaVet.stream()
                     .filter(vet -> vet.getNomeF().equals(cbxVetC.getSelectedItem().toString()))
                     .findFirst()
                     .orElse(null);
-            
+
             consulta.setCliente(clienteSelecionado);
             consulta.setPet(petSelecionado);
             consulta.setFuncionario(vetSelecionado);
             consulta.setValorConsulta(Double.parseDouble(Validacoes.formatarValor(ftfValorConC.getText())));
             consulta.setValorMedicamentos(Double.parseDouble(Validacoes.formatarValor(ftfValorMedC.getText())));
             consulta.setObservacoes(rtfObsC.getText());
+            consulta.setDataConsulta(LocalDate.now());
             ConsultaDAO.cadastrarConsulta(consulta);
-            
-            limparCampos(cbxClienteC, cbxPetC, cbxVetC, ftfValorConC, ftfValorMedC, rtfObsC);            
+
+            limparCampos(cbxClienteC, cbxPetC, cbxVetC, ftfValorConC, ftfValorMedC, rtfObsC);
         }
     }
 
@@ -1167,16 +1220,28 @@ public class TelasCadastro extends javax.swing.JFrame {
             Alerta.Erro("Informe o valor!", "Campo Obrigatório");
         } else {
 
-            // Cadastro de novo cliente
-            Cliente cliente = new Cliente();
-            cliente.setNomeC(rtfNomeCli.getText());
-            cliente.setCpfC(Validacoes.formatarCPF(ftfCPFCli.getText()));
-            cliente.setSexoC(cbxSexoCli.getSelectedItem().toString());
-            cliente.setTelefoneC(Validacoes.formatarNumero(ftfTelCli.getText()));
-            cliente.setEnderecoC(rtfEndCli.getText());
-            ClienteDAO.cadastrarCliente(cliente);
-            
-            limparCampos(rtfNomeCli, ftfCPFCli, cbxSexoCli, rtfEndCli, ftfTelCli);
+            // Cadastro de nova venda
+            Venda venda = new Venda();
+
+            Cliente clienteSelecionadoVenda = listaCliente.stream()
+                    .filter(cliente -> cliente.getNomeC().equals(cbxClienteV.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Produto produtoSelecionadoVenda = listaProdutos.stream()
+                    .filter(produto -> produto.getNomeProd().equals(cbxProdutoV.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            venda.setCliente(clienteSelecionadoVenda);
+            venda.setProduto(produtoSelecionadoVenda);
+            venda.setQtdProduto(Integer.parseInt(rtfQuantidadeV.getText()));
+            venda.setTotalVenda(Double.parseDouble(Validacoes.formatarValor(ftfValorV.getText())));
+            venda.setDataVenda(LocalDate.now());
+
+            VendaDAO.cadastrarVenda(venda);
+
+            limparCampos(cbxClienteV, cbxProdutoV, rtfQuantidadeV, ftfValorV);
         }
     }
 
@@ -1208,9 +1273,9 @@ public class TelasCadastro extends javax.swing.JFrame {
             cliente.setTelefoneC(Validacoes.formatarNumero(ftfTelCli.getText()));
             cliente.setEnderecoC(rtfEndCli.getText());
             ClienteDAO.cadastrarCliente(cliente);
-            
+
             limparCampos(rtfNomeCli, ftfCPFCli, cbxSexoCli, rtfEndCli, ftfTelCli);
-            
+
         }
     }
 
@@ -1238,21 +1303,22 @@ public class TelasCadastro extends javax.swing.JFrame {
         } else if (rtfSenFun.getText().isBlank()) {
             Alerta.Erro("Digite a senha!", "Campo Obrigatório");
         } else {
-            
+
             // Cadastro de novo funcionario e login
             Funcionario funcionario = new Funcionario();
             Login login = new Login();
-            
+
             login.setLogin(rtfUsuFun.getText());
             login.setSenha(rtfSenFun.getText());
             funcionario.setNomeF(rtfNomeFun.getText());
             funcionario.setCpfF(Validacoes.formatarCPF(ftfCpfFun.getText()));
             funcionario.setSexoF(cbxSexoFun.getSelectedItem().toString());
             funcionario.setTelefoneF(Validacoes.formatarNumero(ftfTelFun.getText()));
+            funcionario.setCargoF(cbxCargoFun.getSelectedItem().toString());
             funcionario.setEnderecoF(rtfEndFun.getText());
             funcionario.setLogin(login);
             FuncionarioDAO.cadastrarFuncionario(funcionario);
-            
+
             limparCampos(rtfNomeFun, ftfCpfFun, cbxSexoFun, rtfEndFun, ftfTelFun, cbxCargoFun, rtfUsuFun, rtfSenFun);
         }
     }
@@ -1273,10 +1339,38 @@ public class TelasCadastro extends javax.swing.JFrame {
             Alerta.Erro("Selecione a raça!", "Campo Obrigatório");
         } else if (cbxSexoP.getSelectedIndex() == 0) {
             Alerta.Erro("Selecione o sexo!", "Campo Obrigatório");
-        } else if (ftfDataNascP.getText().isBlank()) {
+        } else if (Validacoes.formatarData(ftfDataNascP.getText()).isBlank()) {
             Alerta.Erro("Informe a data de nascimento!", "Campo Obrigatório");
         } else {
-            // ação de salvar pet
+
+            // Cadastro de novo Pet
+            Pet pet = new Pet();
+
+            Cliente clienteSelecionadoPet = listaCliente.stream()
+                    .filter(cliente -> cliente.getNomeC().equals(cbxNomeTutorP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Especie especieSelecionada = listaEspecie.stream()
+                    .filter(especie -> especie.getNomeEspecie().equals(cbxEspecieP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Raca racaSelecionada = listaRacas.stream()
+                    .filter(raca -> raca.getNomeRaca().equals(cbxRacaP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            pet.setNomePet(rtfNomePetP.getText());
+            pet.setCliente(clienteSelecionadoPet);
+            pet.setEspecie(especieSelecionada);
+            pet.setRaca(racaSelecionada);
+            pet.setSexoPet(cbxSexoP.getSelectedItem().toString());
+            pet.setDataNascPet(LocalDate.parse(converterData(ftfDataNascP.getText())));
+
+            PetDAO.cadastrarPet(pet);
+
+            limparCampos(rtfNomePetP, cbxNomeTutorP, cbxEspecieP, cbxRacaP, cbxSexoP, ftfDataNascP);
         }
     }
 
@@ -1299,7 +1393,30 @@ public class TelasCadastro extends javax.swing.JFrame {
         } else if (Validacoes.formatarValor(ftfValorPro.getText()).isBlank()) {
             Alerta.Erro("Informe o valor!", "Campo Obrigatório");
         } else {
-            // ação de salvar produto
+
+            Produto produto = new Produto();
+
+            Grupo grupoSelecionado = listaGrupos.stream()
+                    .filter(grupo -> grupo.getNomeGrupo().equals(cbxGrupoPro.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Marca marcaSelecionada = listaMarcas.stream()
+                    .filter(marca -> marca.getNomeMarca().equals(cbxMarcaPro.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            produto.setNomeProd(rtfNomeProdP.getText());
+            produto.setDescricaoProd(rtfDescPro.getText());
+            produto.setGrupo(grupoSelecionado);
+            produto.setMarca(marcaSelecionada);
+            produto.setUnVenda(cbxUniVendaPro.getSelectedItem().toString());
+            produto.setValorProd(Double.parseDouble(ftfValorPro.getText()));
+
+            ProdutoDAO.cadastrarProduto(produto);
+
+            limparCampos(rtfNomeProdP, rtfDescPro, cbxGrupoPro, cbxMarcaPro, cbxUniVendaPro, ftfValorPro);
+
         }
     }
 
@@ -1310,39 +1427,143 @@ public class TelasCadastro extends javax.swing.JFrame {
             } else if (comp instanceof Components.RoundedFormattedTextField) {
                 ((Components.RoundedFormattedTextField) comp).setText("");
             } else if (comp instanceof Components.RoundedComboBox) {
-                ((Components.RoundedComboBox<?>) comp).setSelectedIndex(-1);
+                ((Components.RoundedComboBox<?>) comp).setSelectedIndex(0);
             }
         }
     }
-    
+
     public void montarCbxClienteConsulta() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for(Cliente cliente : listaCliente){
+        modelo.addElement(" ");
+        for (Cliente cliente : listaCliente) {
             modelo.addElement(cliente.getNomeC());
         }
-        
+
         cbxClienteC.setModel(modelo);
-        
+
     }
-    
-    public void montarCbxPetConsulta(List<Pet> listaPet) {
+
+    public void montarCbxClienteVenda() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for(Pet pet : listaPet){
+        modelo.addElement(" ");
+        for (Cliente cliente : listaCliente) {
+            modelo.addElement(cliente.getNomeC());
+        }
+
+        cbxClienteV.setModel(modelo);
+
+    }
+
+    public void montarCbxGrupo() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Grupo grupo : listaGrupos) {
+            modelo.addElement(grupo.getNomeGrupo());
+        }
+
+        cbxGrupoPro.setModel(modelo);
+
+    }
+
+    public void montarCbxMarca() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Marca marca : listaMarcas) {
+            modelo.addElement(marca.getNomeMarca());
+        }
+
+        cbxMarcaPro.setModel(modelo);
+
+    }
+
+    public void montarCbxClientePet() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+
+        modelo.addElement(" ");
+        for (Cliente cliente : listaCliente) {
+            modelo.addElement(cliente.getNomeC());
+        }
+
+        cbxNomeTutorP.setModel(modelo);
+
+    }
+
+    public void montarCbxEspeciePet() {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Especie especie : listaEspecie) {
+            modelo.addElement(especie.getNomeEspecie());
+        }
+
+        cbxEspecieP.setModel(modelo);
+
+    }
+
+    public void montarCbxPetConsulta(List<Pet> listaPet) {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Pet pet : listaPet) {
             modelo.addElement(pet.getNomePet());
         }
-        
+
         cbxPetC.setModel(modelo);
-        
+
     }
-    
-    public void montarCbxVet(List<Funcionario> listaVet) {
+
+    public void montarCbxRaca(List<Raca> listaRacas) {
+
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for(Funcionario vet : listaVet){
+        modelo.addElement(" ");
+        for (Raca raca : listaRacas) {
+            modelo.addElement(raca.getNomeRaca());
+        }
+
+        cbxRacaP.setModel(modelo);
+
+    }
+
+    public void montarCbxProduto() {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Produto produto : listaProdutos) {
+            modelo.addElement(produto.getNomeProd());
+        }
+
+        cbxProdutoV.setModel(modelo);
+
+    }
+
+    public void montarCbxVet(List<Funcionario> listaVet) {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Funcionario vet : listaVet) {
             modelo.addElement(vet.getNomeF());
         }
-        
+
         cbxVetC.setModel(modelo);
-        
+
+    }
+
+    public static String converterData(String dataRecebida) {
+        SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatoMySQL = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            if (dataRecebida.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                Date data = formatoOriginal.parse(dataRecebida);
+                return formatoMySQL.format(data);
+            } else if (dataRecebida.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                Date data = formatoMySQL.parse(dataRecebida);
+                return formatoOriginal.format(data);
+            }
+        } catch (ParseException e) {
+            Alerta.Erro("Erro ao converter data", null);
+        }
+        return null;
     }
 
     public static void main(String args[]) {

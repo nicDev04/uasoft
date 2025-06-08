@@ -969,10 +969,9 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="2">
                         <StringItem index="0" value=""/>
                         <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -999,8 +998,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="F&#xea;mea"/>
+                        <StringItem index="2" value="Macho"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -1025,14 +1024,16 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="2">
                         <StringItem index="0" value=""/>
                         <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxEspeciePItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
                   </AuxValues>
@@ -1053,12 +1054,12 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="2">
                         <StringItem index="0" value=""/>
                         <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
                       </StringArray>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <AuxValues>
@@ -1243,10 +1244,29 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="22">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="UN - Unidade"/>
+                        <StringItem index="2" value="CX - Caixa"/>
+                        <StringItem index="3" value="FR - Frasco"/>
+                        <StringItem index="4" value="BL - Blister"/>
+                        <StringItem index="5" value="CP - Comprimido"/>
+                        <StringItem index="6" value="ML - Mililitro"/>
+                        <StringItem index="7" value="L - Litro"/>
+                        <StringItem index="8" value="TB - Tubo"/>
+                        <StringItem index="9" value="GD - Gota"/>
+                        <StringItem index="10" value="SER - Seringa"/>
+                        <StringItem index="11" value="PCT - Pacote"/>
+                        <StringItem index="12" value="KG - Quilograma"/>
+                        <StringItem index="13" value="G - Grama"/>
+                        <StringItem index="14" value="SC - Saco"/>
+                        <StringItem index="15" value="PAR - Par"/>
+                        <StringItem index="16" value="DZ - D&#xfa;zia"/>
+                        <StringItem index="17" value="M - Metro"/>
+                        <StringItem index="18" value="ROLO - Rolo"/>
+                        <StringItem index="19" value="CART - Cartela"/>
+                        <StringItem index="20" value="BIS - Bisnaga"/>
+                        <StringItem index="21" value="AMP - Ampola"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -1583,8 +1603,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="Feminino"/>
+                        <StringItem index="2" value="Masculino"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>

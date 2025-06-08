@@ -33,9 +33,13 @@ public class Validacoes {
     }
 
     public static String formatarValor(String valorFormatar) {
-        String valorLimpo = valorFormatar.replace(",", ".").replace("R$", "").trim();
+        // Remove "R$", todos os pontos e espaços extras, e troca vírgula por ponto
+        String valorLimpo = valorFormatar
+                .replace("R$", "")
+                .replace(".", "")
+                .replace(",", ".")
+                .trim();
 
         return valorLimpo;
     }
 }
-

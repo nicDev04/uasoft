@@ -279,7 +279,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btAdicionarVenda" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btEditarVenda" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btExcluirVenda" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -292,6 +294,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btExcluirVenda" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="btAdicionarVenda" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="btEditarVenda" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="spVendas" min="-2" pref="537" max="-2" attributes="0"/>
@@ -434,6 +437,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarVendaActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="Botoes.JCustomButton2" name="btEditarVenda">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/pen (1) 1.png"/>
+                    </Property>
+                    <Property name="round" type="int" value="10"/>
+                    <Property name="style" type="Botoes.JCustomButton2$ButtonStyle" editor="org.netbeans.modules.form.editors.EnumEditor">
+                      <Value id="RETURN"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarVendaActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jpConsultas">
@@ -459,7 +476,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btAdicionarConsulta" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btEditarConsulta" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btExcluirConsulta" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -472,6 +491,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btExcluirConsulta" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="btAdicionarConsulta" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="btEditarConsulta" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="spConsultas" min="-2" pref="537" max="-2" attributes="0"/>
@@ -620,6 +640,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarConsultaActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="Botoes.JCustomButton2" name="btEditarConsulta">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/pen (1) 1.png"/>
+                    </Property>
+                    <Property name="round" type="int" value="10"/>
+                    <Property name="style" type="Botoes.JCustomButton2$ButtonStyle" editor="org.netbeans.modules.form.editors.EnumEditor">
+                      <Value id="RETURN"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarConsultaActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jpClientes">
@@ -645,7 +679,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btAdicionarCliente" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btEditarCliente" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btExcluirCliente" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -658,6 +694,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btExcluirCliente" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="btAdicionarCliente" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="btEditarCliente" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="spClientes" min="-2" pref="537" max="-2" attributes="0"/>
@@ -667,6 +704,20 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
+                <Component class="Botoes.JCustomButton2" name="btEditarCliente">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/pen (1) 1.png"/>
+                    </Property>
+                    <Property name="round" type="int" value="10"/>
+                    <Property name="style" type="Botoes.JCustomButton2$ButtonStyle" editor="org.netbeans.modules.form.editors.EnumEditor">
+                      <Value id="RETURN"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarClienteActionPerformed"/>
+                  </Events>
+                </Component>
                 <Container class="javax.swing.JScrollPane" name="spClientes">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -825,7 +876,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btAdicionarPet" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btEditarPet" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btExcluirPet" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -838,6 +891,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btExcluirPet" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="btAdicionarPet" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="btEditarPet" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="spPets" min="-2" pref="537" max="-2" attributes="0"/>
@@ -961,6 +1015,20 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="Botoes.JCustomButton2" name="btEditarPet">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/pen (1) 1.png"/>
+                    </Property>
+                    <Property name="round" type="int" value="10"/>
+                    <Property name="style" type="Botoes.JCustomButton2$ButtonStyle" editor="org.netbeans.modules.form.editors.EnumEditor">
+                      <Value id="RETURN"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarPetActionPerformed"/>
+                  </Events>
+                </Component>
                 <Component class="Botoes.JCustomButton2" name="btExcluirPet">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -1011,7 +1079,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btAdicionarProduto" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btEditarProduto" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btExcluirProduto" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -1024,6 +1094,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btExcluirProduto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="btAdicionarProduto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="btEditarProduto" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="spProdutos" min="-2" pref="537" max="-2" attributes="0"/>
@@ -1172,6 +1243,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarProdutoActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="Botoes.JCustomButton2" name="btEditarProduto">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/pen (1) 1.png"/>
+                    </Property>
+                    <Property name="round" type="int" value="10"/>
+                    <Property name="style" type="Botoes.JCustomButton2$ButtonStyle" editor="org.netbeans.modules.form.editors.EnumEditor">
+                      <Value id="RETURN"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarProdutoActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jpFuncionarios">
@@ -1197,7 +1282,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btAdicionarFuncionario" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btEditarFuncionario" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btExcluirFuncionario" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -1210,6 +1297,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btExcluirFuncionario" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="btAdicionarFuncionario" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="btEditarFuncionario" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="spFuncionarios" min="-2" pref="537" max="-2" attributes="0"/>
@@ -1362,6 +1450,20 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarFuncionarioActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="Botoes.JCustomButton2" name="btEditarFuncionario">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/pen (1) 1.png"/>
+                    </Property>
+                    <Property name="round" type="int" value="10"/>
+                    <Property name="style" type="Botoes.JCustomButton2$ButtonStyle" editor="org.netbeans.modules.form.editors.EnumEditor">
+                      <Value id="RETURN"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarFuncionarioActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

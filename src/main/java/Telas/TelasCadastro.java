@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package Telas;
 
 import Classes.Cliente;
@@ -22,21 +26,17 @@ import ClassesDAO.ProdutoDAO;
 import ClassesDAO.RacaDAO;
 import ClassesDAO.VendaDAO;
 import Utilidades.Alerta;
+import Utilidades.Formatador;
 import Utilidades.Validacoes;
-//import Utilidades.Validacoes.FormatadorCampos;
+import static Utilidades.Validacoes.formatarValor;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
-import static java.awt.Font.DIALOG;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
-public class TelasCadastro extends javax.swing.JFrame {
+public class TelasCadastro extends javax.swing.JDialog {
 
     private List<Cliente> listaCliente;
     private List<Pet> listaPet;
@@ -48,9 +48,11 @@ public class TelasCadastro extends javax.swing.JFrame {
     private List<Grupo> listaGrupos;
     private List<Marca> listaMarcas;
 
-    public TelasCadastro(String optSelecionada) {
+    public TelasCadastro(java.awt.Frame parent, boolean modal, String cardName) {
+        super(parent, modal);
         initComponents();
-        viewChangeCad(optSelecionada);
+        viewChange(cardName);
+        
         this.listaCliente = ClienteDAO.listarClientes();
         this.listaPet = PetDAO.listarPets();
         this.listaProdutos = ProdutoDAO.listarProduto();
@@ -66,12 +68,6 @@ public class TelasCadastro extends javax.swing.JFrame {
         montarCbxEspeciePet();
         montarCbxGrupo();
         montarCbxMarca();
-
-
-        /*FormatadorCampos.aplicarFormatoMonetario(ftfValorConC);
-        FormatadorCampos.aplicarFormatoMonetario(ftfValorMedC);
-        FormatadorCampos.aplicarFormatoMonetario(ftfValorPro);
-        FormatadorCampos.aplicarFormatoMonetario(ftfValorV);*/
     }
 
     @SuppressWarnings("unchecked")
@@ -166,7 +162,6 @@ public class TelasCadastro extends javax.swing.JFrame {
         ftfCpfFun = new Components.RoundedFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(197, 228, 130));
 
@@ -228,7 +223,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         lblValorV.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblValorV.setForeground(new java.awt.Color(12, 134, 129));
-        lblValorV.setText("Valor:");
+        lblValorV.setText("Valor (R$):");
 
         btSalvarV.setText("Salvar");
         btSalvarV.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -339,7 +334,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         lblValorConC.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblValorConC.setForeground(new java.awt.Color(12, 134, 129));
-        lblValorConC.setText("Valor Consulta:");
+        lblValorConC.setText("Valor Consulta (R$):");
 
         ftfValorConC.setBackground(new java.awt.Color(142, 196, 123));
         ftfValorConC.setForeground(new java.awt.Color(12, 134, 129));
@@ -349,7 +344,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         lblValorMedC.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblValorMedC.setForeground(new java.awt.Color(12, 134, 129));
-        lblValorMedC.setText("Valor Medicamentos:");
+        lblValorMedC.setText("Valor Medicamentos (R$):");
 
         ftfValorMedC.setBackground(new java.awt.Color(142, 196, 123));
         ftfValorMedC.setForeground(new java.awt.Color(12, 134, 129));
@@ -792,7 +787,7 @@ public class TelasCadastro extends javax.swing.JFrame {
 
         lblValorPro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblValorPro.setForeground(new java.awt.Color(12, 134, 129));
-        lblValorPro.setText("Valor:");
+        lblValorPro.setText("Valor (R$):");
 
         ftfValorPro.setBackground(new java.awt.Color(142, 196, 123));
         ftfValorPro.setForeground(new java.awt.Color(12, 134, 129));
@@ -1102,6 +1097,19 @@ public class TelasCadastro extends javax.swing.JFrame {
         validarSalvarVenda();
     }//GEN-LAST:event_btSalvarVActionPerformed
 
+    private void cbxClienteCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxClienteCItemStateChanged
+        cbxPetC.setEnabled(true);
+
+        Cliente clienteSelecionado = listaCliente.stream()
+                .filter(cliente -> cliente.getNomeC().equals(cbxClienteC.getSelectedItem().toString()))
+                .findFirst()
+                .orElse(null);
+
+        listaPet = PetDAO.listarPetsCliente(clienteSelecionado);
+
+        montarCbxPetConsulta(listaPet);
+    }//GEN-LAST:event_cbxClienteCItemStateChanged
+
     private void btSalvarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCActionPerformed
         validarSalvarConsulta();
     }//GEN-LAST:event_btSalvarCActionPerformed
@@ -1109,6 +1117,19 @@ public class TelasCadastro extends javax.swing.JFrame {
     private void btSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCliActionPerformed
         validarSalvarCliente();
     }//GEN-LAST:event_btSalvarCliActionPerformed
+
+    private void cbxEspeciePItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEspeciePItemStateChanged
+        cbxRacaP.setEnabled(true);
+
+        Especie especieSelecionada = listaEspecie.stream()
+                .filter(especie -> especie.getNomeEspecie().equals(cbxEspecieP.getSelectedItem().toString()))
+                .findFirst()
+                .orElse(null);
+
+        listaRacas = RacaDAO.listarRaca(especieSelecionada);
+
+        montarCbxRaca(listaRacas);
+    }//GEN-LAST:event_cbxEspeciePItemStateChanged
 
     private void btSalvarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarPActionPerformed
         validarSalvarPet();
@@ -1122,32 +1143,7 @@ public class TelasCadastro extends javax.swing.JFrame {
         validarSalvarFuncionario();
     }//GEN-LAST:event_btSalvarFunActionPerformed
 
-    private void cbxClienteCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxClienteCItemStateChanged
-        cbxPetC.setEnabled(true);
-
-        Cliente clienteSelecionado = listaCliente.stream()
-                .filter(cliente -> cliente.getNomeC().equals(cbxClienteC.getSelectedItem().toString()))
-                .findFirst()
-                .orElse(null);
-
-        listaPet = PetDAO.listarPetsCliente(clienteSelecionado);
-
-        montarCbxPetConsulta(listaPet);
-
-    }//GEN-LAST:event_cbxClienteCItemStateChanged
-
-    private void cbxEspeciePItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEspeciePItemStateChanged
-        cbxRacaP.setEnabled(true);
-
-        Especie especieSelecionada = listaEspecie.stream()
-                    .filter(especie -> especie.getNomeEspecie().equals(cbxEspecieP.getSelectedItem().toString()))
-                    .findFirst()
-                    .orElse(null);
-        
-        listaRacas = RacaDAO.listarRaca(especieSelecionada);
-
-        montarCbxRaca(listaRacas);
-    }//GEN-LAST:event_cbxEspeciePItemStateChanged
+    
 
     public void viewChangeCad(String cardName) {  //Método para mudar os cardLayout de acordo com os botões correspondentes
         CardLayout layout = (CardLayout) panelTelasCad.getLayout();
@@ -1236,7 +1232,7 @@ public class TelasCadastro extends javax.swing.JFrame {
             venda.setCliente(clienteSelecionadoVenda);
             venda.setProduto(produtoSelecionadoVenda);
             venda.setQtdProduto(Integer.parseInt(rtfQuantidadeV.getText()));
-            venda.setTotalVenda(Double.parseDouble(Validacoes.formatarValor(ftfValorV.getText())));
+            venda.setTotalVenda(Double.parseDouble(formatarValor(ftfValorV.getText())));
             venda.setDataVenda(LocalDate.now());
 
             VendaDAO.cadastrarVenda(venda);
@@ -1317,6 +1313,7 @@ public class TelasCadastro extends javax.swing.JFrame {
             funcionario.setCargoF(cbxCargoFun.getSelectedItem().toString());
             funcionario.setEnderecoF(rtfEndFun.getText());
             funcionario.setLogin(login);
+            login.setFuncionario(funcionario);
             FuncionarioDAO.cadastrarFuncionario(funcionario);
 
             limparCampos(rtfNomeFun, ftfCpfFun, cbxSexoFun, rtfEndFun, ftfTelFun, cbxCargoFun, rtfUsuFun, rtfSenFun);
@@ -1366,7 +1363,7 @@ public class TelasCadastro extends javax.swing.JFrame {
             pet.setEspecie(especieSelecionada);
             pet.setRaca(racaSelecionada);
             pet.setSexoPet(cbxSexoP.getSelectedItem().toString());
-            pet.setDataNascPet(LocalDate.parse(converterData(ftfDataNascP.getText())));
+            pet.setDataNascPet(LocalDate.parse(Formatador.converterData(ftfDataNascP.getText())));
 
             PetDAO.cadastrarPet(pet);
 
@@ -1411,7 +1408,7 @@ public class TelasCadastro extends javax.swing.JFrame {
             produto.setGrupo(grupoSelecionado);
             produto.setMarca(marcaSelecionada);
             produto.setUnVenda(cbxUniVendaPro.getSelectedItem().toString());
-            produto.setValorProd(Double.parseDouble(ftfValorPro.getText()));
+            produto.setValorProd(Double.parseDouble(formatarValor(ftfValorPro.getText())));
 
             ProdutoDAO.cadastrarProduto(produto);
 
@@ -1547,25 +1544,15 @@ public class TelasCadastro extends javax.swing.JFrame {
         cbxVetC.setModel(modelo);
 
     }
-
-    public static String converterData(String dataRecebida) {
-        SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatoMySQL = new SimpleDateFormat("yyyy-MM-dd");
-
-        try {
-            if (dataRecebida.matches("\\d{2}/\\d{2}/\\d{4}")) {
-                Date data = formatoOriginal.parse(dataRecebida);
-                return formatoMySQL.format(data);
-            } else if (dataRecebida.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                Date data = formatoMySQL.parse(dataRecebida);
-                return formatoOriginal.format(data);
-            }
-        } catch (ParseException e) {
-            Alerta.Erro("Erro ao converter data", null);
-        }
-        return null;
+    
+    public void viewChange(String cardName) {
+        CardLayout cl = (CardLayout) panelTelasCad.getLayout();
+        cl.show(panelTelasCad, cardName);
     }
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1589,11 +1576,21 @@ public class TelasCadastro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelasCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelasCadastro("cardCadVendas").setVisible(true);
+                TelasCadastro dialog = new TelasCadastro(new javax.swing.JFrame(), true, null);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

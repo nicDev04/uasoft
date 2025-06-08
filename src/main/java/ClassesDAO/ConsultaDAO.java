@@ -5,6 +5,9 @@ import Classes.Consulta;
 import Classes.JPAUtil;
 import Utilidades.Alerta;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ConsultaDAO {
@@ -23,6 +26,23 @@ public class ConsultaDAO {
         } finally {
             JPAUtil.closeEntityManager();
         }
+    }
+    
+    public static List<Consulta> listarConsultas() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Consulta> listaConsultas = new ArrayList<>();
+        Query consulta;
+
+        try {
+                consulta = em.createQuery("SELECT consulta FROM Consulta consulta");
+                listaConsultas = consulta.getResultList();
+
+            return listaConsultas;
+        } catch (Exception e) {
+            Alerta.Erro("Erro listagem", "Erro as buscar informação para lista");
+        }
+
+        return listaConsultas;
     }
     
 }

@@ -3,15 +3,31 @@ package Telas;
 import Botoes.JCustomButton2;
 import static Botoes.JCustomButton2.ButtonStyle.EXIT;
 import static Botoes.JCustomButton2.ButtonStyle.SECONDARY;
+import Classes.Cliente;
+import Classes.Consulta;
+import Classes.Funcionario;
+import Classes.Login;
+import Classes.Pet;
+import Classes.Produto;
+import Classes.Venda;
+import ClassesDAO.ClienteDAO;
+import ClassesDAO.ConsultaDAO;
+import ClassesDAO.FuncionarioDAO;
+import ClassesDAO.PetDAO;
+import ClassesDAO.ProdutoDAO;
+import ClassesDAO.VendaDAO;
+import Utilidades.Formatador;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -19,6 +35,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         viewChange("cardVendas");
+        atualizarTabelaVendas();
+        atualizarTabelaConsultas();
+        atualizarTabelaClientes();
+        atualizarTabelaPets();
+        atualizarTabelaProdutos();
+        atualizarTabelaFuncionarios();
     }
 
     @SuppressWarnings("unchecked")
@@ -41,12 +63,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tbVendas = new javax.swing.JTable();
         btExcluirVenda = new Botoes.JCustomButton2();
         btAdicionarVenda = new Botoes.JCustomButton2();
+        btEditarVenda = new Botoes.JCustomButton2();
         jpConsultas = new javax.swing.JPanel();
         spConsultas = new javax.swing.JScrollPane();
         tbConsultas = new javax.swing.JTable();
         btExcluirConsulta = new Botoes.JCustomButton2();
         btAdicionarConsulta = new Botoes.JCustomButton2();
+        btEditarConsulta = new Botoes.JCustomButton2();
         jpClientes = new javax.swing.JPanel();
+        btEditarCliente = new Botoes.JCustomButton2();
         spClientes = new javax.swing.JScrollPane();
         tbClientes = new javax.swing.JTable();
         btExcluirCliente = new Botoes.JCustomButton2();
@@ -54,6 +79,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jpPets = new javax.swing.JPanel();
         spPets = new javax.swing.JScrollPane();
         tbPets = new javax.swing.JTable();
+        btEditarPet = new Botoes.JCustomButton2();
         btExcluirPet = new Botoes.JCustomButton2();
         btAdicionarPet = new Botoes.JCustomButton2();
         jpProdutos = new javax.swing.JPanel();
@@ -61,11 +87,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tbProdutos = new javax.swing.JTable();
         btExcluirProduto = new Botoes.JCustomButton2();
         btAdicionarProduto = new Botoes.JCustomButton2();
+        btEditarProduto = new Botoes.JCustomButton2();
         jpFuncionarios = new javax.swing.JPanel();
         spFuncionarios = new javax.swing.JScrollPane();
         tbFuncionarios = new javax.swing.JTable();
         btExcluirFuncionario = new Botoes.JCustomButton2();
         btAdicionarFuncionario = new Botoes.JCustomButton2();
+        btEditarFuncionario = new Botoes.JCustomButton2();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -291,6 +319,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btEditarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pen (1) 1.png"))); // NOI18N
+        btEditarVenda.setRound(10);
+        btEditarVenda.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btEditarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarVendaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpVendasLayout = new javax.swing.GroupLayout(jpVendas);
         jpVendas.setLayout(jpVendasLayout);
         jpVendasLayout.setHorizontalGroup(
@@ -302,7 +339,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAdicionarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btEditarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -312,7 +351,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addGroup(jpVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExcluirVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdicionarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -402,6 +442,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btEditarConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pen (1) 1.png"))); // NOI18N
+        btEditarConsulta.setRound(10);
+        btEditarConsulta.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btEditarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarConsultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpConsultasLayout = new javax.swing.GroupLayout(jpConsultas);
         jpConsultas.setLayout(jpConsultasLayout);
         jpConsultasLayout.setHorizontalGroup(
@@ -413,7 +462,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAdicionarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btEditarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluirConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -423,7 +474,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addGroup(jpConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExcluirConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdicionarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -432,6 +484,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         panelTelas.add(jpConsultas, "cardConsultas");
 
         jpClientes.setBackground(new java.awt.Color(197, 228, 130));
+
+        btEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pen (1) 1.png"))); // NOI18N
+        btEditarCliente.setRound(10);
+        btEditarCliente.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarClienteActionPerformed(evt);
+            }
+        });
 
         spClientes.setBackground(new java.awt.Color(197, 228, 130));
         spClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(197, 228, 130)));
@@ -524,7 +585,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpClientesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAdicionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -534,7 +597,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addGroup(jpClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdicionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -611,6 +675,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tbPets.setBorder(null);
         tbPets.getTableHeader().setReorderingAllowed(false);
 
+        btEditarPet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pen (1) 1.png"))); // NOI18N
+        btEditarPet.setRound(10);
+        btEditarPet.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btEditarPet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarPetActionPerformed(evt);
+            }
+        });
+
         btExcluirPet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirPet.setRound(10);
         btExcluirPet.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
@@ -635,7 +708,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPetsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAdicionarPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btEditarPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluirPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -645,7 +720,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addGroup(jpPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExcluirPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdicionarPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarPet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spPets, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -735,6 +811,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btEditarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pen (1) 1.png"))); // NOI18N
+        btEditarProduto.setRound(10);
+        btEditarProduto.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btEditarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpProdutosLayout = new javax.swing.GroupLayout(jpProdutos);
         jpProdutos.setLayout(jpProdutosLayout);
         jpProdutosLayout.setHorizontalGroup(
@@ -746,7 +831,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProdutosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -756,7 +843,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -846,6 +934,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btEditarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pen (1) 1.png"))); // NOI18N
+        btEditarFuncionario.setRound(10);
+        btEditarFuncionario.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btEditarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarFuncionarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpFuncionariosLayout = new javax.swing.GroupLayout(jpFuncionarios);
         jpFuncionarios.setLayout(jpFuncionariosLayout);
         jpFuncionariosLayout.setHorizontalGroup(
@@ -857,7 +954,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFuncionariosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btAdicionarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btEditarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluirFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -867,7 +966,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(jpFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btExcluirFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdicionarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -930,33 +1030,69 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btFuncionariosActionPerformed
 
     private void btAdicionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarVendaActionPerformed
-        new TelasCadastro("cardCadVendas").setVisible(true);
+        new TelasCadastro(this, true, "cardCadVendas").setVisible(true);
+
+        atualizarTabelaVendas();
     }//GEN-LAST:event_btAdicionarVendaActionPerformed
 
     private void btAdicionarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarConsultaActionPerformed
-        new TelasCadastro("cardCadConsultas").setVisible(true);
+        new TelasCadastro(this, true, "cardCadConsultas").setVisible(true);
+        
+        atualizarTabelaConsultas();
     }//GEN-LAST:event_btAdicionarConsultaActionPerformed
 
     private void btAdicionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarClienteActionPerformed
-        new TelasCadastro("cardCadClientes").setVisible(true);
+        new TelasCadastro(this, true, "cardCadClientes").setVisible(true);
+        
+        atualizarTabelaClientes();
     }//GEN-LAST:event_btAdicionarClienteActionPerformed
 
     private void btAdicionarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarPetActionPerformed
-        new TelasCadastro("cardCadPets").setVisible(true);
+        new TelasCadastro(this, true, "cardCadPets").setVisible(true);
+        
+        atualizarTabelaPets();
     }//GEN-LAST:event_btAdicionarPetActionPerformed
 
     private void btAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarProdutoActionPerformed
-        new TelasCadastro("cardCadProdutos").setVisible(true);
+        new TelasCadastro(this, true, "cardCadProdutos").setVisible(true);
+        
+        atualizarTabelaProdutos();
     }//GEN-LAST:event_btAdicionarProdutoActionPerformed
 
     private void btAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarFuncionarioActionPerformed
-        new TelasCadastro("cardCadFuncionarios").setVisible(true);
+        new TelasCadastro(this, true, "cardCadFuncionarios").setVisible(true);
+        
+        atualizarTabelaFuncionarios();
     }//GEN-LAST:event_btAdicionarFuncionarioActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         new TelaLogin().setVisible(true);
         dispose();
     }//GEN-LAST:event_btSairActionPerformed
+
+    private void btEditarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEditarVendaActionPerformed
+
+    private void btEditarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEditarConsultaActionPerformed
+
+    private void btEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEditarClienteActionPerformed
+
+    private void btEditarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarPetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEditarPetActionPerformed
+
+    private void btEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEditarProdutoActionPerformed
+
+    private void btEditarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEditarFuncionarioActionPerformed
 
     public void resetarBotoes(JCustomButton2... botoes) { //Método para resetar a cor dos botões da sidebar
         for (JCustomButton2 botao : botoes) {
@@ -991,7 +1127,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1031,10 +1166,135 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void setTbClientes(JTable tbClientes) {
         this.tbClientes = tbClientes;
     }
+
+    public void atualizarTabelaVendas() {
+        List<Venda> listaVendas = VendaDAO.listarVenda();
+
+        // Obtendo o modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) tbVendas.getModel();
+        model.setRowCount(0); // Limpa a tabela
+
+        for (Venda venda : listaVendas) {
+            model.addRow(new Object[]{
+                venda.getIdVenda(),
+                Formatador.converterData(venda.getDataVenda().toString()),// Data Formatada
+                venda.getCliente().getNomeC(),
+                venda.getProduto().getNomeProd(),
+                venda.getQtdProduto(),
+                Formatador.converterValorParaReal(venda.getTotalVenda())
+            });
+        }
+
+        tbVendas.setModel(model);
+    }
     
+    public void atualizarTabelaConsultas() {
+        List<Consulta> listaConsultas = ConsultaDAO.listarConsultas();
+
+        // Obtendo o modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) tbConsultas.getModel();
+        model.setRowCount(0); // Limpa a tabela
+        for (Consulta consulta : listaConsultas) {
+            
+            double soma = consulta.getValorConsulta() + consulta.getValorMedicamentos();
+            model.addRow(new Object[]{
+                consulta.getIdConsulta(),
+                Formatador.converterData(consulta.getDataConsulta().toString()),// Data Formatada
+                consulta.getPet().getNomePet(),
+                consulta.getCliente().getNomeC(),
+                consulta.getFuncionario().getNomeF(),
+                consulta.getObservacoes(),
+                Formatador.converterValorParaReal(soma)
+            });
+        }
+
+        tbConsultas.setModel(model);
+    }
     
+    public void atualizarTabelaClientes() {
+        List<Cliente> listaClientes = ClienteDAO.listarClientes();
+
+        // Obtendo o modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) tbClientes.getModel();
+        model.setRowCount(0); // Limpa a tabela
+        for (Cliente cliente : listaClientes) {            
+            model.addRow(new Object[]{
+                cliente.getIdCliente(),
+                cliente.getNomeC(),
+                Formatador.formatarCPF(cliente.getCpfC()),
+                cliente.getSexoC(),
+                Formatador.formatarTelefone(cliente.getTelefoneC()),
+                cliente.getEnderecoC()
+            });
+        }
+
+        tbClientes.setModel(model);
+    }
     
+    public void atualizarTabelaPets() {
+        List<Pet> listaPets = PetDAO.listarPets();
+
+        // Obtendo o modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) tbPets.getModel();
+        model.setRowCount(0); // Limpa a tabela
+        for (Pet pet : listaPets) {            
+            model.addRow(new Object[]{
+                pet.getIdPet(),
+                pet.getNomePet(),
+                pet.getCliente().getNomeC(),
+                pet.getSexoPet(),
+                pet.getEspecie().getNomeEspecie(),
+                pet.getRaca().getNomeRaca(),
+                Formatador.converterData(pet.getDataNascPet().toString()) // Data Formatada
+            });
+        }
+
+        tbPets.setModel(model);
+    }
     
+    public void atualizarTabelaProdutos() {
+        List<Produto> listaProdutos = ProdutoDAO.listarProduto();
+
+        // Obtendo o modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) tbProdutos.getModel();
+        model.setRowCount(0); // Limpa a tabela
+        for (Produto produto : listaProdutos) {            
+            model.addRow(new Object[]{
+                produto.getIdProduto(),
+                produto.getNomeProd(),
+                produto.getGrupo().getNomeGrupo(),
+                produto.getMarca().getNomeMarca(),
+                produto.getUnVenda(),
+                Formatador.converterValorParaReal(produto.getValorProd()),
+                produto.getDescricaoProd()
+            });
+        }
+
+        tbProdutos.setModel(model);
+    }
+    
+    public void atualizarTabelaFuncionarios() {
+        List<Funcionario> listaFuncionarios = FuncionarioDAO.listarFuncionario();
+
+        // Obtendo o modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) tbFuncionarios.getModel();
+        model.setRowCount(0); // Limpa a tabela
+        for (Funcionario funcionario : listaFuncionarios) {            
+            model.addRow(new Object[]{
+                funcionario.getIdFuncionario(),
+                funcionario.getNomeF(),
+                Formatador.formatarCPF(funcionario.getCpfF()),
+                funcionario.getSexoF(),
+                Formatador.formatarTelefone(funcionario.getTelefoneF()),
+                funcionario.getEnderecoF(),
+                funcionario.getCargoF(),
+                funcionario.getLogin().getLogin()
+            });
+        }
+
+        tbFuncionarios.setModel(model);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Botoes.JCustomButton2 btAdicionarCliente;
@@ -1045,6 +1305,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private Botoes.JCustomButton2 btAdicionarVenda;
     private Botoes.JCustomButton2 btClientes;
     private Botoes.JCustomButton2 btConsultas;
+    private Botoes.JCustomButton2 btEditarCliente;
+    private Botoes.JCustomButton2 btEditarConsulta;
+    private Botoes.JCustomButton2 btEditarFuncionario;
+    private Botoes.JCustomButton2 btEditarPet;
+    private Botoes.JCustomButton2 btEditarProduto;
+    private Botoes.JCustomButton2 btEditarVenda;
     private Botoes.JCustomButton2 btExcluirCliente;
     private Botoes.JCustomButton2 btExcluirConsulta;
     private Botoes.JCustomButton2 btExcluirFuncionario;

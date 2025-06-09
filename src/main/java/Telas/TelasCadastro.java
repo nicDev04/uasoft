@@ -202,12 +202,14 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxClienteV.setMaximumRowCount(100);
         cbxClienteV.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxClienteV.setFocusable(false);
+        cbxClienteV.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteV.setForeground(new Color(12, 134, 129));
 
         cbxProdutoV.setEditable(true);
         cbxProdutoV.setMaximumRowCount(100);
         cbxProdutoV.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxProdutoV.setFocusable(false);
+        cbxProdutoV.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteV.setForeground(new Color(12, 134, 129));
 
         lblProdutoV.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -280,17 +282,17 @@ public class TelasCadastro extends javax.swing.JDialog {
                     .addComponent(lblValorV))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpCadVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxClienteV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftfValorV, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxClienteV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftfValorV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblProdutoV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxProdutoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbxProdutoV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblQuantidadeV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rtfQuantidadeV, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(rtfQuantidadeV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(btSalvarV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -307,6 +309,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxClienteC.setMaximumRowCount(100);
         cbxClienteC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxClienteC.setFocusable(false);
+        cbxClienteC.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
         cbxClienteC.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -322,6 +325,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxPetC.setMaximumRowCount(100);
         cbxPetC.setEnabled(false);
         cbxPetC.setFocusable(false);
+        cbxPetC.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxPetC.setForeground(new Color(12, 134, 129));
 
         lblVetC.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -332,6 +336,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxVetC.setMaximumRowCount(100);
         cbxVetC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxVetC.setFocusable(false);
+        cbxVetC.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxVetC.setForeground(new Color(12, 134, 129));
 
         lblValorConC.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -411,32 +416,32 @@ public class TelasCadastro extends javax.swing.JDialog {
                     .addGroup(jpCadConsultasLayout.createSequentialGroup()
                         .addComponent(lblClienteC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxClienteC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxClienteC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadConsultasLayout.createSequentialGroup()
                         .addComponent(lblValorConC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfValorConC, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ftfValorConC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCadConsultasLayout.createSequentialGroup()
                         .addComponent(lblPetC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxPetC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxPetC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadConsultasLayout.createSequentialGroup()
                         .addComponent(lblValorMedC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfValorMedC, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ftfValorMedC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCadConsultasLayout.createSequentialGroup()
                         .addComponent(lblVetC)
                         .addGap(5, 5, 5)
-                        .addComponent(cbxVetC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxVetC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jpCadConsultasLayout.createSequentialGroup()
                         .addComponent(lblObsC)
                         .addGap(5, 5, 5)
-                        .addComponent(rtfObsC, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                        .addComponent(rtfObsC, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                         .addGap(50, 50, 50)
                         .addComponent(btSalvarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
@@ -467,6 +472,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxSexoCli.setMaximumRowCount(100);
         cbxSexoCli.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Feminino", "Masculino" }));
         cbxSexoCli.setFocusable(false);
+        cbxSexoCli.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxPetC.setForeground(new Color(12, 134, 129));
 
         lblTelCli.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -547,17 +553,17 @@ public class TelasCadastro extends javax.swing.JDialog {
                     .addGroup(jpCadClientesLayout.createSequentialGroup()
                         .addComponent(lblNomeCompleto)
                         .addGap(5, 5, 5)
-                        .addComponent(rtfNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rtfNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadClientesLayout.createSequentialGroup()
                         .addComponent(lblTelCli)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfTelCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ftfTelCli, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpCadClientesLayout.createSequentialGroup()
                         .addComponent(lblCPFCli)
                         .addGap(5, 5, 5)
-                        .addComponent(ftfCPFCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ftfCPFCli, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblSexoCli))
                     .addGroup(jpCadClientesLayout.createSequentialGroup()
@@ -565,8 +571,8 @@ public class TelasCadastro extends javax.swing.JDialog {
                         .addGap(5, 5, 5)
                         .addComponent(rtfEndCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxSexoCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addComponent(cbxSexoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addComponent(btSalvarCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -592,6 +598,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxNomeTutorP.setMaximumRowCount(100);
         cbxNomeTutorP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste" }));
         cbxNomeTutorP.setFocusable(false);
+        cbxNomeTutorP.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
         lblSexoP.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -602,6 +609,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxSexoP.setMaximumRowCount(100);
         cbxSexoP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Fêmea", "Macho" }));
         cbxSexoP.setFocusable(false);
+        cbxSexoP.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
         lblEspecieP.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -612,6 +620,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxEspecieP.setMaximumRowCount(100);
         cbxEspecieP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste" }));
         cbxEspecieP.setFocusable(false);
+        cbxEspecieP.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
         cbxEspecieP.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -628,6 +637,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxRacaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste" }));
         cbxRacaP.setEnabled(false);
         cbxRacaP.setFocusable(false);
+        cbxRacaP.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
         lblDataNascP.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -696,32 +706,32 @@ public class TelasCadastro extends javax.swing.JDialog {
                     .addGroup(jpCadPetsLayout.createSequentialGroup()
                         .addComponent(lblNomePet)
                         .addGap(5, 5, 5)
-                        .addComponent(rtfNomePetP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rtfNomePetP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadPetsLayout.createSequentialGroup()
                         .addComponent(lblEspecieP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxEspecieP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbxEspecieP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCadPetsLayout.createSequentialGroup()
                         .addComponent(lblNomeTutorP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxNomeTutorP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxNomeTutorP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadPetsLayout.createSequentialGroup()
                         .addComponent(lblRacaP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxRacaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbxRacaP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadPetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCadPetsLayout.createSequentialGroup()
                         .addComponent(lblSexoP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxSexoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxSexoP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadPetsLayout.createSequentialGroup()
                         .addComponent(lblDataNascP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfDataNascP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addComponent(ftfDataNascP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(btSalvarP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -743,6 +753,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxUniVendaPro.setMaximumRowCount(100);
         cbxUniVendaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "UN - Unidade", "CX - Caixa", "FR - Frasco", "BL - Blister", "CP - Comprimido", "ML - Mililitro", "L - Litro", "TB - Tubo", "GD - Gota", "SER - Seringa", "PCT - Pacote", "KG - Quilograma", "G - Grama", "SC - Saco", "PAR - Par", "DZ - Dúzia", "M - Metro", "ROLO - Rolo", "CART - Cartela", "BIS - Bisnaga", "AMP - Ampola" }));
         cbxUniVendaPro.setFocusable(false);
+        cbxUniVendaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
         lblUniVenPro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -757,6 +768,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxMarcaPro.setMaximumRowCount(100);
         cbxMarcaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxMarcaPro.setFocusable(false);
+        cbxMarcaPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
         lblGrupoPro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -767,6 +779,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxGrupoPro.setMaximumRowCount(100);
         cbxGrupoPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxGrupoPro.setFocusable(false);
+        cbxGrupoPro.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
         lblDescPro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -842,21 +855,21 @@ public class TelasCadastro extends javax.swing.JDialog {
                     .addGroup(jpCadProdutosLayout.createSequentialGroup()
                         .addComponent(lblNomeProdPro)
                         .addGap(5, 5, 5)
-                        .addComponent(rtfNomeProdP, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rtfNomeProdP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadProdutosLayout.createSequentialGroup()
                         .addComponent(lblValorPro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfValorPro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ftfValorPro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpCadProdutosLayout.createSequentialGroup()
                         .addComponent(lblUniVenPro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxUniVendaPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxUniVendaPro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblMarcaPro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxMarcaPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxMarcaPro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadProdutosLayout.createSequentialGroup()
                         .addComponent(lblDescPro)
                         .addGap(5, 5, 5)
@@ -864,8 +877,8 @@ public class TelasCadastro extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(lblGrupoPro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxGrupoPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(cbxGrupoPro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(btSalvarPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -895,6 +908,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxSexoFun.setMaximumRowCount(100);
         cbxSexoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Feminino", "Masculino" }));
         cbxSexoFun.setFocusable(false);
+        cbxSexoFun.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxPetC.setForeground(new Color(12, 134, 129));
 
         lblTelFun.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -928,6 +942,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         cbxCargoFun.setMaximumRowCount(100);
         cbxCargoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Atendente", "Gerente", "Veterinário" }));
         cbxCargoFun.setFocusable(false);
+        cbxCargoFun.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cbxPetC.setForeground(new Color(12, 134, 129));
 
         btSalvarFun.setText("Salvar");
@@ -1027,38 +1042,38 @@ public class TelasCadastro extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addGroup(jpCadFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCadFuncionarioLayout.createSequentialGroup()
-                        .addComponent(rtfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rtfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblCPFFun))
                     .addGroup(jpCadFuncionarioLayout.createSequentialGroup()
-                        .addComponent(rtfEndFun, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rtfEndFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblCargoFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpCadFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbxCargoFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbxCargoFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ftfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jpCadFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpCadFuncionarioLayout.createSequentialGroup()
                         .addComponent(lblSexoFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxSexoFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxSexoFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadFuncionarioLayout.createSequentialGroup()
                         .addComponent(lblUsuFun)
                         .addGap(5, 5, 5)
-                        .addComponent(rtfUsuFun, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(rtfUsuFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jpCadFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCadFuncionarioLayout.createSequentialGroup()
                         .addComponent(lblTelFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfTelFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ftfTelFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCadFuncionarioLayout.createSequentialGroup()
                         .addComponent(lblSenFun)
                         .addGap(5, 5, 5)
-                        .addComponent(rtfSenFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(rtfSenFun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(btSalvarFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );

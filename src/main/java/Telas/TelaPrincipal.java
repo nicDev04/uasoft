@@ -33,8 +33,12 @@ import javax.swing.table.TableCellRenderer;
 
 public class TelaPrincipal extends javax.swing.JFrame {
     
-    public TelaPrincipal() {
+    private Login login;
+    
+    public TelaPrincipal(Login login) {
         initComponents();
+        this.login = login;
+        definirRestricoes(login);
         viewChange("cardVendas");
         atualizarTabelaVendas();
         atualizarTabelaConsultas();
@@ -1155,6 +1159,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
+    public void definirRestricoes(Login login) {
+        if(login.getFuncionario().getCargoF().equals("Atendente")){
+            btAdicionarConsulta.setVisible(false);
+            btEditarConsulta.setVisible(false);
+            btExcluirConsulta.setVisible(false);
+            btExcluirVenda.setVisible(false);
+            btExcluirCliente.setVisible(false);
+            btFuncionarios.setVisible(false);
+        } else if(login.getFuncionario().getCargoF().equals("Veterinário")){
+            btExcluirConsulta.setVisible(false);
+            btExcluirVenda.setVisible(false);
+            btExcluirCliente.setVisible(false);
+            btFuncionarios.setVisible(false);
+            btExcluirProduto.setVisible(false);
+            btExcluirPet.setVisible(false);
+        } else if(login.getFuncionario().getCargoF().equals("Gerente")){
+            
+        }
+    }
+    
     public void viewChange(String cardName) {  //Método para mudar os cardLayout de acordo com os botões correspondentes da sidebar
         CardLayout layout = (CardLayout) panelTelas.getLayout();
         layout.show(panelTelas, cardName);
@@ -1182,37 +1206,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("FlatLightLaf".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
-    }
     
     public JTable getTbClientes() {
         return tbClientes;

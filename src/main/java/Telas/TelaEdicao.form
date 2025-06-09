@@ -165,18 +165,18 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cbxClienteV" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ftfValorV" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="cbxClienteV" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="ftfValorV" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblProdutoV" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbxProdutoV" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbxProdutoV" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="lblQuantidadeV" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="rtfQuantidadeV" min="-2" pref="31" max="-2" attributes="0"/>
-                          <EmptySpace pref="113" max="32767" attributes="0"/>
+                          <Component id="rtfQuantidadeV" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace pref="141" max="32767" attributes="0"/>
                           <Component id="btSalvarV" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -207,6 +207,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteV.setForeground(new Color(12, 134, 129));"/>
@@ -224,6 +227,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteV.setForeground(new Color(12, 134, 129));"/>
@@ -365,12 +371,12 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblClienteC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxClienteC" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxClienteC" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblValorConC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfValorConC" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfValorConC" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -378,12 +384,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblPetC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxPetC" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxPetC" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblValorMedC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfValorMedC" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfValorMedC" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -391,13 +397,13 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblVetC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="cbxVetC" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxVetC" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblObsC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfObsC" pref="95" max="32767" attributes="0"/>
+                                  <Component id="rtfObsC" pref="127" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btSalvarC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -431,6 +437,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxClienteCItemStateChanged"/>
@@ -463,6 +472,9 @@
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxPetC.setForeground(new Color(12, 134, 129));"/>
@@ -491,6 +503,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxVetC.setForeground(new Color(12, 134, 129));"/>
@@ -641,24 +656,26 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblNomeCompleto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfNomeCli" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblTelCli" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfTelCli" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ftfTelCli" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="rtfNomeCli" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblCPFCli" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfCPFCli" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfCPFCli" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Component id="lblSexoCli" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -669,8 +686,8 @@
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbxSexoCli" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="114" max="32767" attributes="0"/>
+                          <Component id="cbxSexoCli" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace pref="142" max="32767" attributes="0"/>
                           <Component id="btSalvarCli" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -737,6 +754,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxPetC.setForeground(new Color(12, 134, 129));"/>
@@ -889,12 +909,12 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblNomePet" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfNomePetP" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="rtfNomePetP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblEspecieP" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxEspecieP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxEspecieP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -902,12 +922,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblNomeTutorP" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxNomeTutorP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxNomeTutorP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblRacaP" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxRacaP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxRacaP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -915,15 +935,15 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblSexoP" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxSexoP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxSexoP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblDataNascP" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfDataNascP" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfDataNascP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="113" max="32767" attributes="0"/>
+                          <EmptySpace pref="141" max="32767" attributes="0"/>
                           <Component id="btSalvarP" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -979,6 +999,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
@@ -1007,6 +1030,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
@@ -1035,6 +1061,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxEspeciePItemStateChanged"/>
@@ -1067,6 +1096,9 @@
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
@@ -1183,12 +1215,12 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblNomeProdPro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfNomeProdP" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="rtfNomeProdP" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblValorPro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfValorPro" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfValorPro" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1196,11 +1228,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblUniVenPro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxUniVendaPro" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxUniVendaPro" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblMarcaPro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxMarcaPro" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxMarcaPro" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblDescPro" min="-2" max="-2" attributes="0"/>
@@ -1211,8 +1243,8 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblGrupoPro" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbxGrupoPro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <Component id="cbxGrupoPro" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace pref="65" max="32767" attributes="0"/>
                           <Component id="btSalvarPro" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -1276,6 +1308,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
@@ -1311,6 +1346,9 @@
                       <StringArray count="0"/>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
@@ -1339,6 +1377,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
@@ -1502,18 +1543,18 @@
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="rtfNomeFun" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="rtfNomeFun" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblCPFFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="ftfCpfFun" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfCpfFun" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="rtfEndFun" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="rtfEndFun" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblCargoFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxCargoFun" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxCargoFun" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1521,29 +1562,29 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblSexoFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbxSexoFun" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbxSexoFun" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Component id="lblUsuFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="rtfUsuFun" pref="0" max="32767" attributes="0"/>
+                                  <Component id="rtfUsuFun" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace pref="32" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblTelFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ftfTelFun" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="ftfTelFun" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblSenFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfSenFun" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="rtfSenFun" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
                           <Component id="btSalvarFun" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -1610,6 +1651,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxPetC.setForeground(new Color(12, 134, 129));"/>
@@ -1692,6 +1736,9 @@
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxPetC.setForeground(new Color(12, 134, 129));"/>

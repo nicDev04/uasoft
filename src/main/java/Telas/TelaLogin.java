@@ -140,7 +140,7 @@ public class TelaLogin extends javax.swing.JFrame {
             } else {
                 Login login = loginDAO.usuario(rtfLogin.getText(), Criptografia.toMD5(senha));
 
-                new TelaPrincipal().setVisible(true);
+                new TelaPrincipal(login).setVisible(true);
                 dispose();
             }
                        

@@ -62,4 +62,53 @@ public class PetDAO {
 
         return listaPetCliente;
     }
+    
+    public static Pet listarPet(String idPet) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Pet pet = new Pet();
+
+        try {
+            pet = em.find(Pet.class, idPet);
+
+            return pet;
+        } catch (Exception e) {
+            Alerta.Erro("Erro as buscar informação do pet", "Erro listagem");
+        }
+
+        return pet;
+    }
+    
+    public static void editarPet(Pet pet) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(pet);
+            em.getTransaction().commit();
+            Alerta.Erro("Edição realizada com sucesso!", "Sucesso!");
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            Alerta.Erro("Ocorreu um erro ao editar as informações", "Erro ao editar");
+        } finally {
+            em.close();
+        }
+    }
+
+    public static void excluirPets(String id) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Pet petsRemover = em.find(Pet.class, id);
+            em.remove(petsRemover);
+            em.getTransaction().commit();
+            Alerta.Erro("Pet excluído com sucesso!", "Exclusão concluída!");
+
+        } catch (Exception e) {
+            Alerta.Erro("Erro ao excluir o pet no banco", "Erro excluir");
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
 }

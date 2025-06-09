@@ -55,7 +55,7 @@ public class TelasCadastro extends javax.swing.JDialog {
         
         this.listaCliente = ClienteDAO.listarClientes();
         this.listaPet = PetDAO.listarPets();
-        this.listaProdutos = ProdutoDAO.listarProduto();
+        this.listaProdutos = ProdutoDAO.listarProdutos();
         this.listaVet = FuncionarioDAO.listarVeterinario();
         this.listaEspecie = EspecieDAO.listarEspecie();
         this.listaGrupos = GrupoDAO.listarGrupos();
@@ -924,7 +924,7 @@ public class TelasCadastro extends javax.swing.JDialog {
 
         cbxCargoFun.setEditable(true);
         cbxCargoFun.setMaximumRowCount(100);
-        cbxCargoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Atendente", "Gerente", "Veterinário" }));
+        cbxCargoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Atendente", "Gerente", "Veterinário" }));
         cbxCargoFun.setFocusable(false);
         cbxPetC.setForeground(new Color(12, 134, 129));
 

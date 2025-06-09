@@ -347,7 +347,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="4">
-                            <Column editable="false" title="ID" type="java.lang.Long"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="false" title="Data" type="java.lang.String"/>
                             <Column editable="false" title="Cliente" type="java.lang.String"/>
                             <Column editable="false" title="Produto" type="java.lang.String"/>
@@ -422,6 +422,9 @@
                       <Value id="RETURN"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirVendaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="Botoes.JCustomButton2" name="btAdicionarVenda">
                   <Properties>
@@ -544,7 +547,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="4">
-                            <Column editable="false" title="ID" type="java.lang.Long"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="false" title="Data" type="java.lang.String"/>
                             <Column editable="false" title="Pet" type="java.lang.String"/>
                             <Column editable="false" title="Tutor" type="java.lang.String"/>
@@ -625,6 +628,9 @@
                       <Value id="RETURN"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirConsultaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="Botoes.JCustomButton2" name="btAdicionarConsulta">
                   <Properties>
@@ -761,7 +767,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="4">
-                            <Column editable="false" title="ID" type="java.lang.Long"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="false" title="Nome" type="java.lang.String"/>
                             <Column editable="false" title="CPF" type="java.lang.String"/>
                             <Column editable="false" title="Sexo" type="java.lang.String"/>
@@ -836,6 +842,9 @@
                       <Value id="RETURN"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirClienteActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="Botoes.JCustomButton2" name="btAdicionarCliente">
                   <Properties>
@@ -944,7 +953,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="4">
-                            <Column editable="false" title="ID" type="java.lang.Long"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="false" title="Nome" type="java.lang.String"/>
                             <Column editable="false" title="Tutor" type="java.lang.String"/>
                             <Column editable="false" title="Sexo" type="java.lang.String"/>
@@ -1039,6 +1048,9 @@
                       <Value id="RETURN"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirPetActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="Botoes.JCustomButton2" name="btAdicionarPet">
                   <Properties>
@@ -1147,7 +1159,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="7" rowCount="4">
-                            <Column editable="false" title="ID" type="java.lang.Long"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="false" title="Produto" type="java.lang.String"/>
                             <Column editable="false" title="Grupo" type="java.lang.String"/>
                             <Column editable="false" title="Marca" type="java.lang.String"/>
@@ -1228,6 +1240,9 @@
                       <Value id="RETURN"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirProdutoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="Botoes.JCustomButton2" name="btAdicionarProduto">
                   <Properties>
@@ -1350,7 +1365,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="4">
-                            <Column editable="false" title="ID" type="java.lang.Long"/>
+                            <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="false" title="Nome" type="java.lang.String"/>
                             <Column editable="false" title="CPF" type="java.lang.String"/>
                             <Column editable="false" title="Sexo" type="java.lang.String"/>
@@ -1437,6 +1452,9 @@
                       <Value id="RETURN"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirFuncionarioActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="Botoes.JCustomButton2" name="btAdicionarFuncionario">
                   <Properties>

@@ -45,4 +45,53 @@ public class ConsultaDAO {
         return listaConsultas;
     }
     
+    public static Consulta listarConsulta(String idConsulta) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Consulta consulta = new Consulta();
+        
+        try {
+            consulta = em.find(Consulta.class, idConsulta);
+            
+            return consulta;
+        } catch (Exception e) {
+            Alerta.Erro("Erro ao listar a consulta no banco!", "Erro na listagem!");
+        }
+        return consulta;
+    }
+    
+    public static void editarConsulta(Consulta consulta) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(consulta);
+            em.getTransaction().commit();
+            Alerta.Erro("Edição realizada com sucesso!", "Sucesso!");
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            Alerta.Erro("Ocorreu um erro ao editar as informações", "Erro ao editar");
+        } finally {
+            em.close();
+        }
+    }
+    
+    public static void excluirConsultas(String id) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Consulta consultasRemover = em.find(Consulta.class, id);
+            em.remove(consultasRemover);
+            em.getTransaction().commit();
+            
+            Alerta.Erro("Consulta excluída com sucesso!", "Exclusão concluída!");
+
+        } catch (Exception e) {
+            Alerta.Erro("Erro ao excluir a consulta no banco", "Erro excluir");
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
 }

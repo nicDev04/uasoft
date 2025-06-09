@@ -16,6 +16,7 @@ import ClassesDAO.FuncionarioDAO;
 import ClassesDAO.PetDAO;
 import ClassesDAO.ProdutoDAO;
 import ClassesDAO.VendaDAO;
+import Utilidades.Alerta;
 import Utilidades.Formatador;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -31,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
     public TelaPrincipal() {
         initComponents();
         viewChange("cardVendas");
@@ -42,7 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         atualizarTabelaProdutos();
         atualizarTabelaFuncionarios();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -256,7 +257,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -309,6 +310,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btExcluirVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirVenda.setRound(10);
         btExcluirVenda.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btExcluirVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirVendaActionPerformed(evt);
+            }
+        });
 
         btAdicionarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus (3) 2.png"))); // NOI18N
         btAdicionarVenda.setRound(10);
@@ -384,7 +390,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -432,6 +438,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btExcluirConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirConsulta.setRound(10);
         btExcluirConsulta.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btExcluirConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirConsultaActionPerformed(evt);
+            }
+        });
 
         btAdicionarConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus (3) 2.png"))); // NOI18N
         btAdicionarConsulta.setRound(10);
@@ -516,7 +527,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -564,6 +575,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btExcluirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirCliente.setRound(10);
         btExcluirCliente.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirClienteActionPerformed(evt);
+            }
+        });
 
         btAdicionarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus (3) 2.png"))); // NOI18N
         btAdicionarCliente.setRound(10);
@@ -630,7 +646,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -687,6 +703,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btExcluirPet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirPet.setRound(10);
         btExcluirPet.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btExcluirPet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirPetActionPerformed(evt);
+            }
+        });
 
         btAdicionarPet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus (3) 2.png"))); // NOI18N
         btAdicionarPet.setRound(10);
@@ -753,7 +774,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -801,6 +822,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirProduto.setRound(10);
         btExcluirProduto.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirProdutoActionPerformed(evt);
+            }
+        });
 
         btAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus (3) 2.png"))); // NOI18N
         btAdicionarProduto.setRound(10);
@@ -876,7 +902,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
@@ -924,6 +950,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btExcluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1) 2.png"))); // NOI18N
         btExcluirFuncionario.setRound(10);
         btExcluirFuncionario.setStyle(Botoes.JCustomButton2.ButtonStyle.RETURN);
+        btExcluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirFuncionarioActionPerformed(evt);
+            }
+        });
 
         btAdicionarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus (3) 2.png"))); // NOI18N
         btAdicionarFuncionario.setRound(10);
@@ -1031,7 +1062,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btAdicionarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarVendaActionPerformed
         new TelasCadastro(this, true, "cardCadVendas").setVisible(true);
-
+        
         atualizarTabelaVendas();
     }//GEN-LAST:event_btAdicionarVendaActionPerformed
 
@@ -1071,40 +1102,64 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btEditarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarVendaActionPerformed
-        // TODO add your handling code here:
+        editarVendas("cardEditVendas");
     }//GEN-LAST:event_btEditarVendaActionPerformed
 
     private void btEditarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarConsultaActionPerformed
-        // TODO add your handling code here:
+        editarConsultas("cardEditConsultas");
     }//GEN-LAST:event_btEditarConsultaActionPerformed
 
     private void btEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarClienteActionPerformed
-        // TODO add your handling code here:
+        editarClientes("cardEditClientes");
     }//GEN-LAST:event_btEditarClienteActionPerformed
 
     private void btEditarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarPetActionPerformed
-        // TODO add your handling code here:
+        editarPets("cardEditPets");
     }//GEN-LAST:event_btEditarPetActionPerformed
 
     private void btEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarProdutoActionPerformed
-        // TODO add your handling code here:
+        editarProdutos("cardEditProdutos");
     }//GEN-LAST:event_btEditarProdutoActionPerformed
 
     private void btEditarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarFuncionarioActionPerformed
-        // TODO add your handling code here:
+        editarFuncionario("cardEditFuncionarios");
     }//GEN-LAST:event_btEditarFuncionarioActionPerformed
 
+    private void btExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirClienteActionPerformed
+        excluirClientes();
+    }//GEN-LAST:event_btExcluirClienteActionPerformed
+
+    private void btExcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirVendaActionPerformed
+        excluirVendas();
+    }//GEN-LAST:event_btExcluirVendaActionPerformed
+
+    private void btExcluirConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirConsultaActionPerformed
+        excluirConsultas();
+    }//GEN-LAST:event_btExcluirConsultaActionPerformed
+
+    private void btExcluirPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirPetActionPerformed
+        excluirPets();
+    }//GEN-LAST:event_btExcluirPetActionPerformed
+
+    private void btExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirProdutoActionPerformed
+        excluirProdutos();
+    }//GEN-LAST:event_btExcluirProdutoActionPerformed
+
+    private void btExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirFuncionarioActionPerformed
+        excluirFuncionarios();
+    }//GEN-LAST:event_btExcluirFuncionarioActionPerformed
+    
     public void resetarBotoes(JCustomButton2... botoes) { //Método para resetar a cor dos botões da sidebar
         for (JCustomButton2 botao : botoes) {
             botao.setStyle(EXIT);
         }
     }
-
+    
     public void viewChange(String cardName) {  //Método para mudar os cardLayout de acordo com os botões correspondentes da sidebar
         CardLayout layout = (CardLayout) panelTelas.getLayout();
         layout.show(panelTelas, cardName);
         resetarBotoes(btVendas, btConsultas, btClientes, btPets, btProdutos, btFuncionarios);
-
+        
         switch (cardName) {
             case "cardVendas" -> {
                 btVendas.setStyle(SECONDARY);
@@ -1126,7 +1181,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         }
     }
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1158,17 +1213,57 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    
     public JTable getTbClientes() {
         return tbClientes;
     }
-
+    
     public void setTbClientes(JTable tbClientes) {
         this.tbClientes = tbClientes;
     }
-
+    
+    public JTable getTbConsultas() {
+        return tbConsultas;
+    }
+    
+    public void setTbConsultas(JTable tbConsultas) {
+        this.tbConsultas = tbConsultas;
+    }
+    
+    public JTable getTbVendas() {
+        return tbVendas;
+    }
+    
+    public void setTbVendas(JTable tbVendas) {
+        this.tbVendas = tbVendas;
+    }
+    
+    public JTable getTbPets() {
+        return tbPets;
+    }
+    
+    public void setTbPets(JTable tbPets) {
+        this.tbPets = tbPets;
+    }
+    
+    public JTable getTbProdutos() {
+        return tbProdutos;
+    }
+    
+    public void setTbProdutos(JTable tbProdutos) {
+        this.tbProdutos = tbProdutos;
+    }
+    
+    public JTable getTbFuncionarios() {
+        return tbFuncionarios;
+    }
+    
+    public void setTbFuncionarios(JTable tbFuncionarios) {
+        this.tbFuncionarios = tbFuncionarios;
+    }
+    
     public void atualizarTabelaVendas() {
-        List<Venda> listaVendas = VendaDAO.listarVenda();
+        List<Venda> listaVendas = VendaDAO.listarVendas();
 
         // Obtendo o modelo da tabela
         DefaultTableModel model = (DefaultTableModel) tbVendas.getModel();
@@ -1176,7 +1271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         for (Venda venda : listaVendas) {
             model.addRow(new Object[]{
-                venda.getIdVenda(),
+                String.valueOf(venda.getIdVenda()),
                 Formatador.converterData(venda.getDataVenda().toString()),// Data Formatada
                 venda.getCliente().getNomeC(),
                 venda.getProduto().getNomeProd(),
@@ -1184,7 +1279,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 Formatador.converterValorParaReal(venda.getTotalVenda())
             });
         }
-
+        
         tbVendas.setModel(model);
     }
     
@@ -1198,7 +1293,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             double soma = consulta.getValorConsulta() + consulta.getValorMedicamentos();
             model.addRow(new Object[]{
-                consulta.getIdConsulta(),
+                String.valueOf(consulta.getIdConsulta()),
                 Formatador.converterData(consulta.getDataConsulta().toString()),// Data Formatada
                 consulta.getPet().getNomePet(),
                 consulta.getCliente().getNomeC(),
@@ -1207,7 +1302,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 Formatador.converterValorParaReal(soma)
             });
         }
-
+        
         tbConsultas.setModel(model);
     }
     
@@ -1219,7 +1314,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         model.setRowCount(0); // Limpa a tabela
         for (Cliente cliente : listaClientes) {            
             model.addRow(new Object[]{
-                cliente.getIdCliente(),
+                String.valueOf(cliente.getIdCliente()),
                 cliente.getNomeC(),
                 Formatador.formatarCPF(cliente.getCpfC()),
                 cliente.getSexoC(),
@@ -1227,7 +1322,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 cliente.getEnderecoC()
             });
         }
-
+        
         tbClientes.setModel(model);
     }
     
@@ -1239,7 +1334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         model.setRowCount(0); // Limpa a tabela
         for (Pet pet : listaPets) {            
             model.addRow(new Object[]{
-                pet.getIdPet(),
+                String.valueOf(pet.getIdPet()),
                 pet.getNomePet(),
                 pet.getCliente().getNomeC(),
                 pet.getSexoPet(),
@@ -1248,19 +1343,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 Formatador.converterData(pet.getDataNascPet().toString()) // Data Formatada
             });
         }
-
+        
         tbPets.setModel(model);
     }
     
     public void atualizarTabelaProdutos() {
-        List<Produto> listaProdutos = ProdutoDAO.listarProduto();
+        List<Produto> listaProdutos = ProdutoDAO.listarProdutos();
 
         // Obtendo o modelo da tabela
         DefaultTableModel model = (DefaultTableModel) tbProdutos.getModel();
         model.setRowCount(0); // Limpa a tabela
         for (Produto produto : listaProdutos) {            
             model.addRow(new Object[]{
-                produto.getIdProduto(),
+                String.valueOf(produto.getIdProduto()),
                 produto.getNomeProd(),
                 produto.getGrupo().getNomeGrupo(),
                 produto.getMarca().getNomeMarca(),
@@ -1269,19 +1364,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 produto.getDescricaoProd()
             });
         }
-
+        
         tbProdutos.setModel(model);
     }
     
     public void atualizarTabelaFuncionarios() {
-        List<Funcionario> listaFuncionarios = FuncionarioDAO.listarFuncionario();
+        List<Funcionario> listaFuncionarios = FuncionarioDAO.listarFuncionarios();
 
         // Obtendo o modelo da tabela
         DefaultTableModel model = (DefaultTableModel) tbFuncionarios.getModel();
         model.setRowCount(0); // Limpa a tabela
         for (Funcionario funcionario : listaFuncionarios) {            
             model.addRow(new Object[]{
-                funcionario.getIdFuncionario(),
+                String.valueOf(funcionario.getIdFuncionario()),
                 funcionario.getNomeF(),
                 Formatador.formatarCPF(funcionario.getCpfF()),
                 funcionario.getSexoF(),
@@ -1291,10 +1386,184 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 funcionario.getLogin().getLogin()
             });
         }
-
+        
         tbFuncionarios.setModel(model);
     }
-
+    
+    public void editarClientes(String card) {  //Método para editar os clientes que foram cadastrados no banco de dados
+        int linhaSelecionada = tbClientes.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada", "Erro na linha");
+        } else {
+            String idCliente = (String) tbClientes.getValueAt(linhaSelecionada, 0);
+            
+            new TelaEdicao(this,
+                    rootPaneCheckingEnabled,
+                    idCliente, card
+            ).setVisible(true);
+        }
+        atualizarTabelaClientes();
+    }
+    
+    public void excluirClientes() {  //Método para excluir os clientes que foram cadastrados no banco de dados
+        int linhaSelecionada = tbClientes.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idCliente = (String) tbClientes.getValueAt(linhaSelecionada, 0);
+            
+            ClienteDAO.excluirClientes(idCliente);
+        }
+        atualizarTabelaClientes();
+    }
+    
+    public void editarConsultas(String card) {  //Método para editar as consultas que foram cadastradas no banco de dados
+        int linhaSelecionada = tbConsultas.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada", "Erro na linha");
+        } else {
+            String idConsulta = (String) tbConsultas.getValueAt(linhaSelecionada, 0);
+            
+            new TelaEdicao(this,
+                    rootPaneCheckingEnabled,
+                    idConsulta, card
+            ).setVisible(true);
+        }
+        atualizarTabelaConsultas();
+    }
+    
+    public void excluirConsultas() {  //Método para excluir as consultas que foram cadastradas no banco de dados
+        int linhaSelecionada = tbConsultas.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idConsulta = (String) tbConsultas.getValueAt(linhaSelecionada, 0);
+            
+            ConsultaDAO.excluirConsultas(idConsulta);
+        }
+        atualizarTabelaConsultas();
+    }
+    
+    public void editarVendas(String card) {  //Método para editar as vendas que foram cadastrados no banco de dados
+        int linhaSelecionada = tbVendas.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idVenda = (String) tbVendas.getValueAt(linhaSelecionada, 0);
+            
+            new TelaEdicao(this,
+                    rootPaneCheckingEnabled,
+                    idVenda, card
+            ).setVisible(true);
+        }
+        atualizarTabelaVendas();
+    }
+    
+    public void excluirVendas() {  //Método para excluir as vendas que foram cadastradas no banco de dados
+        int linhaSelecionada = tbVendas.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idVenda = (String) tbVendas.getValueAt(linhaSelecionada, 0);
+            
+            VendaDAO.excluirVendas(idVenda);
+        }
+        atualizarTabelaVendas();
+    }
+    
+    public void editarPets(String card) {  //Método para editar os pets que foram cadastrados no banco de dados
+        int linhaSelecionada = tbPets.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idPet = (String) tbPets.getValueAt(linhaSelecionada, 0);
+            
+            new TelaEdicao(this,
+                    rootPaneCheckingEnabled,
+                    idPet, card
+            ).setVisible(true);
+        }
+        atualizarTabelaPets();
+    }
+    
+    public void excluirPets() {  //Método para excluir os pets que foram cadastradas no banco de dados
+        int linhaSelecionada = tbPets.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idPet = (String) tbPets.getValueAt(linhaSelecionada, 0);
+            
+            PetDAO.excluirPets(idPet);
+        }
+        atualizarTabelaPets();
+    }
+    
+    public void editarFuncionario(String card) {  //Método para editar os funcionarios que foram cadastrados no banco de dados
+        int linhaSelecionada = tbFuncionarios.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            Object idFuncionario = tbFuncionarios.getValueAt(linhaSelecionada, 0);
+            
+            new TelaEdicao(this,
+                    rootPaneCheckingEnabled,
+                    (String) idFuncionario, card
+            ).setVisible(true);
+        }
+        
+        atualizarTabelaFuncionarios();
+    }
+    
+    public void excluirFuncionarios() {  //Método para excluir os funcionarios que foram cadastradas no banco de dados
+        int linhaSelecionada = tbFuncionarios.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idFuncionario = (String) tbFuncionarios.getValueAt(linhaSelecionada, 0);
+            
+            FuncionarioDAO.excluirFuncionarios(idFuncionario);
+        }
+        atualizarTabelaFuncionarios();
+    }
+    
+    public void editarProdutos(String card) {  //Método para editar os produtos que foram cadastrados no banco de dados
+        int linhaSelecionada = tbProdutos.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Erro na linha", "Nenhuma linha selecionada");
+        } else {
+            String idProduto = (String) tbProdutos.getValueAt(linhaSelecionada, 0);
+            
+            new TelaEdicao(this,
+                    rootPaneCheckingEnabled,
+                    idProduto, card
+            ).setVisible(true);
+        }
+        atualizarTabelaProdutos();
+    }
+    
+    public void excluirProdutos() {  //Método para excluir os produtos que foram cadastradas no banco de dados
+        int linhaSelecionada = tbProdutos.getSelectedRow();
+        
+        if (linhaSelecionada == -1) {
+            Alerta.Erro("Nenhuma linha selecionada!", "Erro na linha");
+        } else {
+            String idProduto = (String) tbProdutos.getValueAt(linhaSelecionada, 0);
+            
+            ProdutoDAO.excluirProdutos(idProduto);
+        }
+        atualizarTabelaProdutos();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Botoes.JCustomButton2 btAdicionarCliente;

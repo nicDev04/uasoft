@@ -26,8 +26,22 @@ public class FuncionarioDAO {
             JPAUtil.closeEntityManager();
         }
     }
+    
+    public static Funcionario listarFuncionario(String idFuncionario) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Funcionario funcionario = new Funcionario();
+        
+        try {
+            funcionario = em.find(Funcionario.class, idFuncionario);
+            
+            return funcionario;
+        } catch (Exception e) {
+            Alerta.Erro("Erro ao listar o funcionário no banco!", "Erro na listagem!");
+        }
+        return funcionario;
+    }
 
-    public static List<Funcionario> listarFuncionario() {
+    public static List<Funcionario> listarFuncionarios() {
         EntityManager em = JPAUtil.getEntityManager();
         List<Funcionario> listaFuncionarios = new ArrayList<>();
         Query consulta;
@@ -57,10 +71,45 @@ public class FuncionarioDAO {
             return listaVet;
         } catch (Exception e) {
             Alerta.Erro("Erro listagem", "Erro as buscar informação para lista");
+            
         }
 
         return listaVet;
     }
     
+    public static void editarFuncionario(Funcionario funcionario) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(funcionario);
+            em.getTransaction().commit();
+            Alerta.Erro("Edição realizada com sucesso!", "Sucesso!");
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            Alerta.Erro("Ocorreu um erro ao editar as informações", "Erro ao editar");
+        } finally {
+            em.close();
+        }
+    }
+    
+    public static void excluirFuncionarios(String id) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Funcionario funcionariosRemover = em.find(Funcionario.class, id);
+            em.remove(funcionariosRemover);
+            em.getTransaction().commit();
+            
+            Alerta.Erro("Funcionario excluído com sucesso!", "Exclusão concluída!");
+
+        } catch (Exception e) {
+            Alerta.Erro("Erro ao excluir o funcionario no banco", "Erro excluir");
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
     
 }

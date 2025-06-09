@@ -113,7 +113,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="cardCadVendas"/>
+                  <CardConstraints cardName="cardEditVendas"/>
                 </Constraint>
               </Constraints>
 
@@ -315,7 +315,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="cardCadConsultas"/>
+                  <CardConstraints cardName="cardEditConsultas"/>
                 </Constraint>
               </Constraints>
 
@@ -432,6 +432,9 @@
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxClienteCItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
                   </AuxValues>
@@ -458,6 +461,7 @@
                         <StringItem index="2" value="Teste2"/>
                       </StringArray>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <AuxValues>
@@ -595,7 +599,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="cardCadClientes"/>
+                  <CardConstraints cardName="cardEditClientes"/>
                 </Constraint>
               </Constraints>
 
@@ -604,16 +608,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblNomeCompleto" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="rtfNomeCli" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="rtfNomeCli" alignment="0" pref="240" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   <Component id="lblSexoCli" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="cbxSexoCli" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="cbxSexoCli" alignment="0" pref="240" max="32767" attributes="0"/>
                               <Component id="lblCPFCli" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="rtfCPFCli" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="ftfCPFCli" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="107" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -653,9 +657,9 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblCPFCli" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfCPFCli" min="-2" pref="31" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ftfCPFCli" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Component id="lblSexoCli" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -710,20 +714,6 @@
                     <Property name="text" type="java.lang.String" value="CPF:"/>
                   </Properties>
                 </Component>
-                <Component class="Components.RoundedTextField" name="rtfCPFCli">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="7b" green="c4" red="8e" type="rgb"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="81" green="86" red="c" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Roboto" size="12" style="0"/>
-                    </Property>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lblSexoCli">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -742,8 +732,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="Feminino"/>
+                        <StringItem index="2" value="Masculino"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -817,6 +807,23 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarCliActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="Components.RoundedFormattedTextField" name="ftfCPFCli">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="7b" green="c4" red="8e" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="81" green="86" red="c" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="###.###.###-##" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jpEditPets">
@@ -827,7 +834,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="cardCadPets"/>
+                  <CardConstraints cardName="cardEditPets"/>
                 </Constraint>
               </Constraints>
 
@@ -995,8 +1002,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="F&#xea;mea"/>
+                        <StringItem index="2" value="Macho"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -1029,6 +1036,9 @@
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxEspeciePItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cbxClienteC.setForeground(new Color(12, 134, 129));"/>
                   </AuxValues>
@@ -1055,6 +1065,7 @@
                         <StringItem index="2" value="Teste2"/>
                       </StringArray>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <AuxValues>
@@ -1112,7 +1123,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="cardCadProdutos"/>
+                  <CardConstraints cardName="cardEditProdutos"/>
                 </Constraint>
               </Constraints>
 
@@ -1239,10 +1250,29 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="22">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="UN - Unidade"/>
+                        <StringItem index="2" value="CX - Caixa"/>
+                        <StringItem index="3" value="FR - Frasco"/>
+                        <StringItem index="4" value="BL - Blister"/>
+                        <StringItem index="5" value="CP - Comprimido"/>
+                        <StringItem index="6" value="ML - Mililitro"/>
+                        <StringItem index="7" value="L - Litro"/>
+                        <StringItem index="8" value="TB - Tubo"/>
+                        <StringItem index="9" value="GD - Gota"/>
+                        <StringItem index="10" value="SER - Seringa"/>
+                        <StringItem index="11" value="PCT - Pacote"/>
+                        <StringItem index="12" value="KG - Quilograma"/>
+                        <StringItem index="13" value="G - Grama"/>
+                        <StringItem index="14" value="SC - Saco"/>
+                        <StringItem index="15" value="PAR - Par"/>
+                        <StringItem index="16" value="DZ - D&#xfa;zia"/>
+                        <StringItem index="17" value="M - Metro"/>
+                        <StringItem index="18" value="ROLO - Rolo"/>
+                        <StringItem index="19" value="CART - Cartela"/>
+                        <StringItem index="20" value="BIS - Bisnaga"/>
+                        <StringItem index="21" value="AMP - Ampola"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -1278,11 +1308,7 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
@@ -1393,7 +1419,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="cardCadFuncionarios"/>
+                  <CardConstraints cardName="cardEditFuncionarios"/>
                 </Constraint>
               </Constraints>
 
@@ -1414,12 +1440,19 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblNomeFun" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="rtfNomeFun" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="lblCPFFun" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="rtfCPFFun" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="lblNomeFun" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="rtfNomeFun" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="lblCPFFun" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace pref="106" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="ftfCpfFun" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace pref="106" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lblEndFun" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="rtfEndFun" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
@@ -1468,15 +1501,15 @@
                           </Group>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Component id="rtfNomeFun" min="-2" pref="31" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblCPFFun" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="rtfCPFFun" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="ftfCpfFun" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="rtfEndFun" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="rtfEndFun" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblCargoFun" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1510,7 +1543,7 @@
                                   <Component id="rtfSenFun" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="48" max="32767" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                           <Component id="btSalvarFun" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -1554,20 +1587,6 @@
                     <Property name="text" type="java.lang.String" value="CPF:"/>
                   </Properties>
                 </Component>
-                <Component class="Components.RoundedTextField" name="rtfCPFFun">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="7b" green="c4" red="8e" type="rgb"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="81" green="86" red="c" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Roboto" size="12" style="0"/>
-                    </Property>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lblSexoFun">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1586,8 +1605,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="Feminino"/>
+                        <StringItem index="2" value="Masculino"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -1665,10 +1684,11 @@
                     <Property name="editable" type="boolean" value="true"/>
                     <Property name="maximumRowCount" type="int" value="100"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="4">
                         <StringItem index="0" value=""/>
-                        <StringItem index="1" value="Teste"/>
-                        <StringItem index="2" value="Teste2"/>
+                        <StringItem index="1" value="Atendente"/>
+                        <StringItem index="2" value="Gerente"/>
+                        <StringItem index="3" value="Veterin&#xe1;rio"/>
                       </StringArray>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -1736,6 +1756,23 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="12" style="0"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="Components.RoundedFormattedTextField" name="ftfCpfFun">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="7b" green="c4" red="8e" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="81" green="86" red="c" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto" size="12" style="0"/>
+                    </Property>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="###.###.###-##" subtype="-1" type="5"/>
                     </Property>
                   </Properties>
                 </Component>

@@ -3,6 +3,8 @@ package Utilidades;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -24,6 +26,15 @@ public class Formatador {
             Alerta.Erro("Erro ao converter data", null);
         }
         return null;
+    }
+
+    public static String converterParaPTBR(LocalDate data) {
+        if (data == null) {
+            return null;
+        }
+
+        DateTimeFormatter formatoNumerico = DateTimeFormatter.ofPattern("ddMMyyyy");
+        return data.format(formatoNumerico);
     }
 
     public static String converterValorParaReal(Object valorRecebido) {
@@ -82,5 +93,13 @@ public class Formatador {
         // Aplica a formatação: (XX) 9XXXX-XXXX
         return numeroLimpo.replaceFirst("(\\d{2})(\\d{5})(\\d{4})", "($1) $2-$3");
     }
+    
+    public static String formatarValorPTBR(double valor) {
+    NumberFormat formatoBrasileiro = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+    String formatado = formatoBrasileiro.format(valor);
+    
+    // Remove o símbolo de R$, se você quer apenas os números
+    return formatado.replace("R$", "").trim();
+}
 
 }

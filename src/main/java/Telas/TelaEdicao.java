@@ -1,15 +1,91 @@
-
 package Telas;
 
+import static Botoes.JCustomButton2.ButtonStyle.SECONDARY;
+import Classes.Cliente;
+import Classes.Consulta;
+import Classes.Especie;
+import Classes.Funcionario;
+import Classes.Grupo;
+import Classes.Login;
+import Classes.Marca;
+import Classes.Pet;
+import Classes.Produto;
+import Classes.Raca;
+import Classes.Venda;
+import ClassesDAO.ClienteDAO;
+import ClassesDAO.ConsultaDAO;
+import ClassesDAO.EspecieDAO;
+import ClassesDAO.FuncionarioDAO;
+import ClassesDAO.GrupoDAO;
+import ClassesDAO.MarcaDAO;
+import ClassesDAO.PetDAO;
+import ClassesDAO.ProdutoDAO;
+import ClassesDAO.RacaDAO;
+import ClassesDAO.VendaDAO;
+import Utilidades.Alerta;
+import Utilidades.Formatador;
+import static Utilidades.Formatador.formatarValorPTBR;
+import Utilidades.Validacoes;
+import static Utilidades.Validacoes.formatarValor;
+import java.awt.CardLayout;
 import java.awt.Color;
-
+import java.awt.Component;
+import java.util.List;
+import java.time.LocalDate;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaEdicao extends javax.swing.JDialog {
 
-    public TelaEdicao(java.awt.Frame parent, boolean modal) {
+    private List<Cliente> listaCliente;
+    private List<Pet> listaPet;
+    private List<Pet> listaPetCliente;
+    private List<Funcionario> listaVet;
+    private List<Produto> listaProdutos;
+    private List<Especie> listaEspecie;
+    private List<Raca> listaRacas;
+    private List<Grupo> listaGrupos;
+    private List<Marca> listaMarcas;
+
+    private String id;
+
+    public TelaEdicao(java.awt.Frame parent, boolean modal, String id, String tela) {
         super(parent, modal);
         initComponents();
+
+        this.listaCliente = ClienteDAO.listarClientes();
+        this.listaPet = PetDAO.listarPets();
+        this.listaProdutos = ProdutoDAO.listarProdutos();
+        this.listaVet = FuncionarioDAO.listarVeterinario();
+        this.listaEspecie = EspecieDAO.listarEspecie();
+        this.listaGrupos = GrupoDAO.listarGrupos();
+        this.listaMarcas = MarcaDAO.listarMarcas();
+
+        this.id = id;
+        
+        viewChange(tela);
+        
+
+        montarCbxClienteConsulta();
+        montarCbxVet(listaVet);
+        montarCbxClienteVenda();
+
+        montarCbxProduto();
+        montarCbxClientePet();
+        montarCbxEspeciePet();
+
+        montarCbxGrupo();
+        montarCbxMarca();
+        
+        montarCampos(tela);
+        
     }
+
+    public void viewChange(String cardName) {
+        CardLayout layout = (CardLayout) panelTelasEdit.getLayout();
+        layout.show(panelTelasEdit, cardName);
+    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -47,7 +123,6 @@ public class TelaEdicao extends javax.swing.JDialog {
         lblNomeCompleto = new javax.swing.JLabel();
         rtfNomeCli = new Components.RoundedTextField();
         lblCPFCli = new javax.swing.JLabel();
-        rtfCPFCli = new Components.RoundedTextField();
         lblSexoCli = new javax.swing.JLabel();
         cbxSexoCli = new Components.RoundedComboBox();
         lblTelCli = new javax.swing.JLabel();
@@ -55,6 +130,7 @@ public class TelaEdicao extends javax.swing.JDialog {
         lblEndCli = new javax.swing.JLabel();
         rtfEndCli = new Components.RoundedTextField();
         btSalvarCli = new Botoes.JCustomButton2();
+        ftfCPFCli = new Components.RoundedFormattedTextField();
         jpEditPets = new javax.swing.JPanel();
         lblNomePet = new javax.swing.JLabel();
         rtfNomePetP = new Components.RoundedTextField();
@@ -87,7 +163,6 @@ public class TelaEdicao extends javax.swing.JDialog {
         lblNomeFun = new javax.swing.JLabel();
         rtfNomeFun = new Components.RoundedTextField();
         lblCPFFun = new javax.swing.JLabel();
-        rtfCPFFun = new Components.RoundedTextField();
         lblSexoFun = new javax.swing.JLabel();
         cbxSexoFun = new Components.RoundedComboBox();
         lblTelFun = new javax.swing.JLabel();
@@ -101,6 +176,7 @@ public class TelaEdicao extends javax.swing.JDialog {
         lblUsuFun = new javax.swing.JLabel();
         lblSenFun = new javax.swing.JLabel();
         rtfSenFun = new Components.RoundedTextField();
+        ftfCpfFun = new Components.RoundedFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -234,7 +310,7 @@ public class TelaEdicao extends javax.swing.JDialog {
                 .addGap(23, 23, 23))
         );
 
-        panelTelasEdit.add(jpEditVendas, "cardCadVendas");
+        panelTelasEdit.add(jpEditVendas, "cardEditVendas");
 
         jpEditConsultas.setBackground(new java.awt.Color(197, 228, 130));
 
@@ -247,6 +323,11 @@ public class TelaEdicao extends javax.swing.JDialog {
         cbxClienteC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxClienteC.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
+        cbxClienteC.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxClienteCItemStateChanged(evt);
+            }
+        });
 
         lblPetC.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblPetC.setForeground(new java.awt.Color(12, 134, 129));
@@ -255,6 +336,7 @@ public class TelaEdicao extends javax.swing.JDialog {
         cbxPetC.setEditable(true);
         cbxPetC.setMaximumRowCount(100);
         cbxPetC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxPetC.setEnabled(false);
         cbxPetC.setFocusable(false);
         cbxPetC.setForeground(new Color(12, 134, 129));
 
@@ -376,7 +458,7 @@ public class TelaEdicao extends javax.swing.JDialog {
                         .addGap(23, 23, 23))))
         );
 
-        panelTelasEdit.add(jpEditConsultas, "cardCadConsultas");
+        panelTelasEdit.add(jpEditConsultas, "cardEditConsultas");
 
         jpEditClientes.setBackground(new java.awt.Color(197, 228, 130));
 
@@ -393,18 +475,13 @@ public class TelaEdicao extends javax.swing.JDialog {
         lblCPFCli.setForeground(new java.awt.Color(12, 134, 129));
         lblCPFCli.setText("CPF:");
 
-        rtfCPFCli.setBackground(new java.awt.Color(142, 196, 123));
-        rtfCPFCli.setForeground(new java.awt.Color(12, 134, 129));
-        rtfCPFCli.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        rtfCPFCli.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-
         lblSexoCli.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblSexoCli.setForeground(new java.awt.Color(12, 134, 129));
         lblSexoCli.setText("Sexo:");
 
         cbxSexoCli.setEditable(true);
         cbxSexoCli.setMaximumRowCount(100);
-        cbxSexoCli.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxSexoCli.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Feminino", "Masculino" }));
         cbxSexoCli.setFocusable(false);
         cbxPetC.setForeground(new Color(12, 134, 129));
 
@@ -440,21 +517,31 @@ public class TelaEdicao extends javax.swing.JDialog {
             }
         });
 
+        ftfCPFCli.setBackground(new java.awt.Color(142, 196, 123));
+        ftfCPFCli.setForeground(new java.awt.Color(12, 134, 129));
+        ftfCPFCli.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ftfCPFCli.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        try {
+            ftfCPFCli.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jpEditClientesLayout = new javax.swing.GroupLayout(jpEditClientes);
         jpEditClientes.setLayout(jpEditClientesLayout);
         jpEditClientesLayout.setHorizontalGroup(
             jpEditClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpEditClientesLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(jpEditClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpEditClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNomeCompleto)
-                    .addComponent(rtfNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rtfNomeCli, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addGroup(jpEditClientesLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(lblSexoCli))
-                    .addComponent(cbxSexoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxSexoCli, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addComponent(lblCPFCli)
-                    .addComponent(rtfCPFCli, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftfCPFCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jpEditClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEditClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -485,9 +572,9 @@ public class TelaEdicao extends javax.swing.JDialog {
                 .addGroup(jpEditClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpEditClientesLayout.createSequentialGroup()
                         .addComponent(lblCPFCli)
-                        .addGap(5, 5, 5)
-                        .addComponent(rtfCPFCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ftfCPFCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
                         .addComponent(lblSexoCli))
                     .addGroup(jpEditClientesLayout.createSequentialGroup()
                         .addComponent(lblEndCli)
@@ -500,7 +587,7 @@ public class TelaEdicao extends javax.swing.JDialog {
                 .addGap(23, 23, 23))
         );
 
-        panelTelasEdit.add(jpEditClientes, "cardCadClientes");
+        panelTelasEdit.add(jpEditClientes, "cardEditClientes");
 
         jpEditPets.setBackground(new java.awt.Color(197, 228, 130));
 
@@ -529,7 +616,7 @@ public class TelaEdicao extends javax.swing.JDialog {
 
         cbxSexoP.setEditable(true);
         cbxSexoP.setMaximumRowCount(100);
-        cbxSexoP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxSexoP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Fêmea", "Macho" }));
         cbxSexoP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -542,6 +629,11 @@ public class TelaEdicao extends javax.swing.JDialog {
         cbxEspecieP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxEspecieP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
+        cbxEspecieP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEspeciePItemStateChanged(evt);
+            }
+        });
 
         lblRacaP.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblRacaP.setForeground(new java.awt.Color(12, 134, 129));
@@ -550,6 +642,7 @@ public class TelaEdicao extends javax.swing.JDialog {
         cbxRacaP.setEditable(true);
         cbxRacaP.setMaximumRowCount(100);
         cbxRacaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxRacaP.setEnabled(false);
         cbxRacaP.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -649,7 +742,7 @@ public class TelaEdicao extends javax.swing.JDialog {
                 .addGap(23, 23, 23))
         );
 
-        panelTelasEdit.add(jpEditPets, "cardCadPets");
+        panelTelasEdit.add(jpEditPets, "cardEditPets");
 
         jpEditProdutos.setBackground(new java.awt.Color(197, 228, 130));
 
@@ -664,7 +757,7 @@ public class TelaEdicao extends javax.swing.JDialog {
 
         cbxUniVendaPro.setEditable(true);
         cbxUniVendaPro.setMaximumRowCount(100);
-        cbxUniVendaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxUniVendaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "UN - Unidade", "CX - Caixa", "FR - Frasco", "BL - Blister", "CP - Comprimido", "ML - Mililitro", "L - Litro", "TB - Tubo", "GD - Gota", "SER - Seringa", "PCT - Pacote", "KG - Quilograma", "G - Grama", "SC - Saco", "PAR - Par", "DZ - Dúzia", "M - Metro", "ROLO - Rolo", "CART - Cartela", "BIS - Bisnaga", "AMP - Ampola" }));
         cbxUniVendaPro.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -678,7 +771,6 @@ public class TelaEdicao extends javax.swing.JDialog {
 
         cbxMarcaPro.setEditable(true);
         cbxMarcaPro.setMaximumRowCount(100);
-        cbxMarcaPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
         cbxMarcaPro.setFocusable(false);
         cbxClienteC.setForeground(new Color(12, 134, 129));
 
@@ -793,7 +885,7 @@ public class TelaEdicao extends javax.swing.JDialog {
                 .addGap(23, 23, 23))
         );
 
-        panelTelasEdit.add(jpEditProdutos, "cardCadProdutos");
+        panelTelasEdit.add(jpEditProdutos, "cardEditProdutos");
 
         jpEditFuncionario.setBackground(new java.awt.Color(197, 228, 130));
 
@@ -810,18 +902,13 @@ public class TelaEdicao extends javax.swing.JDialog {
         lblCPFFun.setForeground(new java.awt.Color(12, 134, 129));
         lblCPFFun.setText("CPF:");
 
-        rtfCPFFun.setBackground(new java.awt.Color(142, 196, 123));
-        rtfCPFFun.setForeground(new java.awt.Color(12, 134, 129));
-        rtfCPFFun.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        rtfCPFFun.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-
         lblSexoFun.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblSexoFun.setForeground(new java.awt.Color(12, 134, 129));
         lblSexoFun.setText("Sexo:");
 
         cbxSexoFun.setEditable(true);
         cbxSexoFun.setMaximumRowCount(100);
-        cbxSexoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxSexoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Feminino", "Masculino" }));
         cbxSexoFun.setFocusable(false);
         cbxPetC.setForeground(new Color(12, 134, 129));
 
@@ -854,7 +941,7 @@ public class TelaEdicao extends javax.swing.JDialog {
 
         cbxCargoFun.setEditable(true);
         cbxCargoFun.setMaximumRowCount(100);
-        cbxCargoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Teste", "Teste2" }));
+        cbxCargoFun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Atendente", "Gerente", "Veterinário" }));
         cbxCargoFun.setFocusable(false);
         cbxPetC.setForeground(new Color(12, 134, 129));
 
@@ -885,6 +972,16 @@ public class TelaEdicao extends javax.swing.JDialog {
         rtfSenFun.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         rtfSenFun.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
+        ftfCpfFun.setBackground(new java.awt.Color(142, 196, 123));
+        ftfCpfFun.setForeground(new java.awt.Color(12, 134, 129));
+        ftfCpfFun.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ftfCpfFun.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        try {
+            ftfCpfFun.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jpEditFuncionarioLayout = new javax.swing.GroupLayout(jpEditFuncionario);
         jpEditFuncionario.setLayout(jpEditFuncionarioLayout);
         jpEditFuncionarioLayout.setHorizontalGroup(
@@ -901,11 +998,15 @@ public class TelaEdicao extends javax.swing.JDialog {
                         .addGroup(jpEditFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpEditFuncionarioLayout.createSequentialGroup()
                                 .addGroup(jpEditFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNomeFun)
-                                    .addComponent(rtfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCPFFun)
-                                    .addComponent(rtfCPFFun, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                                    .addGroup(jpEditFuncionarioLayout.createSequentialGroup()
+                                        .addGroup(jpEditFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNomeFun)
+                                            .addComponent(rtfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblCPFFun))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE))
+                                    .addGroup(jpEditFuncionarioLayout.createSequentialGroup()
+                                        .addComponent(ftfCpfFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(106, 106, 106)))
                                 .addGroup(jpEditFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblEndFun)
                                     .addComponent(rtfEndFun, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -944,10 +1045,10 @@ public class TelaEdicao extends javax.swing.JDialog {
                         .addComponent(rtfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblCPFFun)
-                        .addGap(5, 5, 5)
-                        .addComponent(rtfCPFFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ftfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpEditFuncionarioLayout.createSequentialGroup()
-                        .addComponent(rtfEndFun, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(rtfEndFun, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblCargoFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -973,12 +1074,12 @@ public class TelaEdicao extends javax.swing.JDialog {
                         .addComponent(lblSenFun)
                         .addGap(5, 5, 5)
                         .addComponent(rtfSenFun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btSalvarFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
 
-        panelTelasEdit.add(jpEditFuncionario, "cardCadFuncionarios");
+        panelTelasEdit.add(jpEditFuncionario, "cardEditFuncionarios");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1011,32 +1112,535 @@ public class TelaEdicao extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarVActionPerformed
-        
+        validarSalvarVenda();
     }//GEN-LAST:event_btSalvarVActionPerformed
 
     private void btSalvarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCActionPerformed
-        
+        validarSalvarConsulta();
     }//GEN-LAST:event_btSalvarCActionPerformed
 
     private void btSalvarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarCliActionPerformed
-        
+        validarSalvarCliente();
     }//GEN-LAST:event_btSalvarCliActionPerformed
 
     private void btSalvarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarPActionPerformed
-        
+        validarSalvarPet();
     }//GEN-LAST:event_btSalvarPActionPerformed
 
     private void btSalvarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarProActionPerformed
-        
+        validarSalvarProduto();
     }//GEN-LAST:event_btSalvarProActionPerformed
 
     private void btSalvarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarFunActionPerformed
-        
+        validarSalvarFuncionario();
     }//GEN-LAST:event_btSalvarFunActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void cbxClienteCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxClienteCItemStateChanged
+        cbxPetC.setEnabled(true);
+
+        Cliente clienteSelecionado = listaCliente.stream()
+                .filter(cliente -> cliente.getNomeC().equals(cbxClienteC.getSelectedItem().toString()))
+                .findFirst()
+                .orElse(null);
+
+        listaPet = PetDAO.listarPetsCliente(clienteSelecionado);
+
+        montarCbxPetConsulta(listaPet);
+    }//GEN-LAST:event_cbxClienteCItemStateChanged
+
+    private void cbxEspeciePItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEspeciePItemStateChanged
+        cbxRacaP.setEnabled(true);
+
+        Especie especieSelecionada = listaEspecie.stream()
+                .filter(especie -> especie.getNomeEspecie().equals(cbxEspecieP.getSelectedItem().toString()))
+                .findFirst()
+                .orElse(null);
+
+        listaRacas = RacaDAO.listarRaca(especieSelecionada);
+
+        montarCbxRaca(listaRacas);
+    }//GEN-LAST:event_cbxEspeciePItemStateChanged
+
+    public void validarSalvarConsulta() {
+        if (cbxClienteC.getSelectedIndex() == 0 && cbxPetC.getSelectedIndex() == 0
+                && cbxVetC.getSelectedIndex() == 0 && Validacoes.formatarValor(ftfValorConC.getText()).isBlank()
+                && Validacoes.formatarValor(ftfValorMedC.getText()).isBlank() && rtfObsC.getText().isBlank()) {
+
+            Alerta.Erro("Todos os campos da Consulta estão vazios!", "Campos Vazios!");
+        } else if (cbxClienteC.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione um cliente!", "Campo Obrigatório!");
+        } else if (cbxPetC.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione um pet!", "Campo Obrigatório!");
+        } else if (cbxVetC.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione um veterinário!", "Campo Obrigatório!");
+        } else if (Validacoes.formatarValor(ftfValorConC.getText()).isBlank()) {
+            Alerta.Erro("Informe o valor da consulta!", "Campo Obrigatório!");
+        } else if (Validacoes.formatarValor(ftfValorMedC.getText()).isBlank()) {
+            Alerta.Erro("Informe o valor do medicamento!", "Campo Obrigatório!");
+        } else if (rtfObsC.getText().isBlank()) {
+            Alerta.Erro("Insira uma observação!", "Campo Obrigatório!");
+        } else {
+
+            Consulta consulta = ConsultaDAO.listarConsulta(id);
+
+            Cliente clienteSelecionado = listaCliente.stream()
+                    .filter(cliente -> cliente.getNomeC().equals(cbxClienteC.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Pet petSelecionado = listaPet.stream()
+                    .filter(pet -> pet.getNomePet().equals(cbxPetC.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Funcionario vetSelecionado = listaVet.stream()
+                    .filter(vet -> vet.getNomeF().equals(cbxVetC.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            consulta.setCliente(clienteSelecionado);
+            consulta.setPet(petSelecionado);
+            consulta.setFuncionario(vetSelecionado);
+            consulta.setValorConsulta(Double.parseDouble(Validacoes.formatarValor(ftfValorConC.getText())));
+            consulta.setValorMedicamentos(Double.parseDouble(Validacoes.formatarValor(ftfValorMedC.getText())));
+            consulta.setObservacoes(rtfObsC.getText());
+            ConsultaDAO.editarConsulta(consulta);
+
+            limparCampos(cbxClienteC, cbxPetC, cbxVetC, ftfValorConC, ftfValorMedC, rtfObsC);
+        }
+    }
+
+    public void validarSalvarVenda() {
+        if (cbxClienteV.getSelectedIndex() == 0 && cbxProdutoV.getSelectedIndex() == 0
+                && rtfQuantidadeV.getText().isBlank() && Validacoes.formatarValor(ftfValorV.getText()).isBlank()) {
+
+            Alerta.Erro("Todos os campos da Venda estão vazios!", "Campos Vazios");
+        } else if (cbxClienteV.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione um cliente!", "Campo Obrigatório");
+        } else if (cbxProdutoV.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione um produto!", "Campo Obrigatório");
+        } else if (rtfQuantidadeV.getText().isBlank()) {
+            Alerta.Erro("Informe a quantidade!", "Campo Obrigatório");
+        } else if (Validacoes.formatarValor(ftfValorV.getText()).isBlank()) {
+            Alerta.Erro("Informe o valor!", "Campo Obrigatório");
+        } else {
+
+            Venda venda = VendaDAO.listarVenda(id);
+
+            Cliente clienteSelecionadoVenda = listaCliente.stream()
+                    .filter(cliente -> cliente.getNomeC().equals(cbxClienteV.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Produto produtoSelecionadoVenda = listaProdutos.stream()
+                    .filter(produto -> produto.getNomeProd().equals(cbxProdutoV.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            venda.setCliente(clienteSelecionadoVenda);
+            venda.setProduto(produtoSelecionadoVenda);
+            venda.setQtdProduto(Integer.parseInt(rtfQuantidadeV.getText()));
+            venda.setTotalVenda(Double.parseDouble(formatarValor(ftfValorV.getText())));
+
+            VendaDAO.editarVenda(venda);
+
+            limparCampos(cbxClienteV, cbxProdutoV, rtfQuantidadeV, ftfValorV);
+        }
+    }
+
+    public void validarSalvarCliente() {
+
+        // Validações de preenchimento
+        if (rtfNomeCli.getText().isBlank() && Validacoes.formatarCPF(ftfCPFCli.getText()).isBlank()
+                && cbxSexoCli.getSelectedIndex() == 0 && rtfEndCli.getText().isBlank()
+                && Validacoes.formatarNumero(ftfTelCli.getText()).isBlank()) {
+
+            Alerta.Erro("Todos os campos do Cliente estão vazios!", "Campos Vazios");
+        } else if (rtfNomeCli.getText().isBlank()) {
+            Alerta.Erro("Digite o nome do cliente!", "Campo Obrigatório");
+        } else if (Validacoes.formatarCPF(ftfCPFCli.getText()).isBlank()) {
+            Alerta.Erro("Digite o CPF do cliente!", "Campo Obrigatório");
+        } else if (cbxSexoCli.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione o sexo!", "Campo Obrigatório");
+        } else if (rtfEndCli.getText().isBlank()) {
+            Alerta.Erro("Digite o endereço!", "Campo Obrigatório");
+        } else if (Validacoes.formatarNumero(ftfTelCli.getText()).isBlank()) {
+            Alerta.Erro("Digite o telefone!", "Campo Obrigatório");
+        } else {
+
+            Cliente cliente = ClienteDAO.listarCliente(id);
+
+            cliente.setNomeC(rtfNomeCli.getText());
+            cliente.setCpfC(Validacoes.formatarCPF(ftfCPFCli.getText()));
+
+            cliente.setSexoC(cbxSexoCli.getSelectedItem().toString());
+            cliente.setTelefoneC(Validacoes.formatarNumero(ftfTelCli.getText()));
+            cliente.setEnderecoC(rtfEndCli.getText());
+
+            ClienteDAO.editarCliente(cliente);
+            dispose();
+        }
+    }
+
+    public void validarSalvarFuncionario() {
+        if (rtfNomeFun.getText().isBlank() && ftfCpfFun.getText().isBlank()
+                && cbxSexoFun.getSelectedIndex() == 0 && rtfEndFun.getText().isBlank()
+                && ftfTelFun.getText().isBlank() && cbxCargoFun.getSelectedIndex() == 0
+                && rtfUsuFun.getText().isBlank() && rtfSenFun.getText().isBlank()) {
+
+            Alerta.Erro("Todos os campos do Funcionário estão vazios!", "Campos Vazios");
+        } else if (rtfNomeFun.getText().isBlank()) {
+            Alerta.Erro("Digite o nome do funcionário!", "Campo Obrigatório");
+        } else if (ftfCpfFun.getText().isBlank()) {
+            Alerta.Erro("Digite o CPF do funcionário!", "Campo Obrigatório");
+        } else if (cbxSexoFun.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione o sexo!", "Campo Obrigatório");
+        } else if (rtfEndFun.getText().isBlank()) {
+            Alerta.Erro("Digite o endereço!", "Campo Obrigatório");
+        } else if (ftfTelFun.getText().isBlank()) {
+            Alerta.Erro("Digite o telefone!", "Campo Obrigatório");
+        } else if (cbxCargoFun.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione o cargo!", "Campo Obrigatório");
+        } else if (rtfUsuFun.getText().isBlank()) {
+            Alerta.Erro("Digite o nome de usuário!", "Campo Obrigatório");
+        } else if (rtfSenFun.getText().isBlank()) {
+            Alerta.Erro("Digite a senha!", "Campo Obrigatório");
+        } else {
+
+            Funcionario funcionario = FuncionarioDAO.listarFuncionario(id);
+
+            funcionario.getLogin().setLogin(rtfUsuFun.getText());
+            funcionario.getLogin().setSenha(rtfSenFun.getText());
+            funcionario.setNomeF(rtfNomeFun.getText());
+            funcionario.setCpfF(Validacoes.formatarCPF(ftfCpfFun.getText()));
+            funcionario.setSexoF(cbxSexoFun.getSelectedItem().toString());
+            funcionario.setTelefoneF(Validacoes.formatarNumero(ftfTelFun.getText()));
+            funcionario.setCargoF(cbxCargoFun.getSelectedItem().toString());
+            funcionario.setEnderecoF(rtfEndFun.getText());
+            FuncionarioDAO.editarFuncionario(funcionario);
+
+            dispose();
+        }
+    }
+
+    public void validarSalvarPet() {
+        if (rtfNomePetP.getText().isBlank() && cbxNomeTutorP.getSelectedIndex() == 0
+                && cbxEspecieP.getSelectedIndex() == 0 && cbxRacaP.getSelectedIndex() == 0
+                && cbxSexoP.getSelectedIndex() == 0 && ftfDataNascP.getText().isBlank()) {
+
+            Alerta.Erro("Todos os campos do Pet estão vazios!", "Campos Vazios");
+        } else if (rtfNomePetP.getText().isBlank()) {
+            Alerta.Erro("Digite o nome do pet!", "Campo Obrigatório");
+        } else if (cbxNomeTutorP.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione o tutor!", "Campo Obrigatório");
+        } else if (cbxEspecieP.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione a espécie!", "Campo Obrigatório");
+        } else if (cbxRacaP.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione a raça!", "Campo Obrigatório");
+        } else if (cbxSexoP.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione o sexo!", "Campo Obrigatório");
+        } else if (Validacoes.formatarData(ftfDataNascP.getText()).isBlank()) {
+            Alerta.Erro("Informe a data de nascimento!", "Campo Obrigatório");
+        } else {
+
+            Pet pet = PetDAO.listarPet(id);
+
+            Cliente clienteSelecionadoPet = listaCliente.stream()
+                    .filter(cliente -> cliente.getNomeC().equals(cbxNomeTutorP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Especie especieSelecionada = listaEspecie.stream()
+                    .filter(especie -> especie.getNomeEspecie().equals(cbxEspecieP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Raca racaSelecionada = listaRacas.stream()
+                    .filter(raca -> raca.getNomeRaca().equals(cbxRacaP.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            pet.setNomePet(rtfNomePetP.getText());
+            pet.setCliente(clienteSelecionadoPet);
+            pet.setEspecie(especieSelecionada);
+            pet.setRaca(racaSelecionada);
+            pet.setSexoPet(cbxSexoP.getSelectedItem().toString());
+            pet.setDataNascPet(LocalDate.parse(Formatador.converterData(ftfDataNascP.getText())));
+
+            PetDAO.editarPet(pet);
+
+            limparCampos(rtfNomePetP, cbxNomeTutorP, cbxEspecieP, cbxRacaP, cbxSexoP, ftfDataNascP);
+        }
+    }
+
+    public void validarSalvarProduto() {
+        if (rtfNomeProdP.getText().isBlank() && rtfDescPro.getText().isBlank()
+                && cbxGrupoPro.getSelectedIndex() == 0 && cbxMarcaPro.getSelectedIndex() == 0
+                && cbxUniVendaPro.getSelectedIndex() == 0 && Validacoes.formatarValor(ftfValorPro.getText()).isBlank()) {
+
+            Alerta.Erro("Todos os campos do Produto estão vazios!", "Campos Vazios");
+        } else if (rtfNomeProdP.getText().isBlank()) {
+            Alerta.Erro("Digite o nome do produto!", "Campo Obrigatório");
+        } else if (rtfDescPro.getText().isBlank()) {
+            Alerta.Erro("Digite a descrição!", "Campo Obrigatório");
+        } else if (cbxGrupoPro.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione o grupo!", "Campo Obrigatório");
+        } else if (cbxMarcaPro.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione a marca!", "Campo Obrigatório");
+        } else if (cbxUniVendaPro.getSelectedIndex() == 0) {
+            Alerta.Erro("Selecione a unidade de venda!", "Campo Obrigatório");
+        } else if (Validacoes.formatarValor(ftfValorPro.getText()).isBlank()) {
+            Alerta.Erro("Informe o valor!", "Campo Obrigatório");
+        } else {
+
+            Produto produto = ProdutoDAO.listarProduto(id);
+
+            Grupo grupoSelecionado = listaGrupos.stream()
+                    .filter(grupo -> grupo.getNomeGrupo().equals(cbxGrupoPro.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            Marca marcaSelecionada = listaMarcas.stream()
+                    .filter(marca -> marca.getNomeMarca().equals(cbxMarcaPro.getSelectedItem().toString()))
+                    .findFirst()
+                    .orElse(null);
+
+            produto.setNomeProd(rtfNomeProdP.getText());
+            produto.setDescricaoProd(rtfDescPro.getText());
+            produto.setGrupo(grupoSelecionado);
+            produto.setMarca(marcaSelecionada);
+            produto.setUnVenda(cbxUniVendaPro.getSelectedItem().toString());
+            produto.setValorProd(Double.parseDouble(formatarValor(ftfValorPro.getText())));
+
+            ProdutoDAO.editarProduto(produto);
+
+            limparCampos(rtfNomeProdP, rtfDescPro, cbxGrupoPro, cbxMarcaPro, cbxUniVendaPro, ftfValorPro);
+
+        }
+    }
+
+    public void limparCampos(Component... componentes) {
+        for (Component comp : componentes) {
+            if (comp instanceof Components.RoundedTextField) {
+                ((Components.RoundedTextField) comp).setText("");
+            } else if (comp instanceof Components.RoundedFormattedTextField) {
+                ((Components.RoundedFormattedTextField) comp).setText("");
+            } else if (comp instanceof Components.RoundedComboBox) {
+                ((Components.RoundedComboBox<?>) comp).setSelectedIndex(0);
+            }
+        }
+    }
+
+    public void montarCamposCliente() {
+
+        Cliente cliente = ClienteDAO.listarCliente(id);
+
+        rtfNomeCli.setText(cliente.getNomeC());
+        ftfCPFCli.setText(cliente.getCpfC());
+        cbxSexoCli.setSelectedItem(cliente.getSexoC());
+        ftfTelCli.setText(cliente.getTelefoneC());
+        rtfEndCli.setText(cliente.getEnderecoC());
+    }
+
+    public void montarCamposVenda() {
+
+        Venda venda = VendaDAO.listarVenda(id);
+        
+        cbxClienteV.setSelectedItem(venda.getCliente().getNomeC());
+        cbxProdutoV.setSelectedItem(venda.getProduto().getNomeProd());
+        rtfQuantidadeV.setText(String.valueOf(venda.getQtdProduto()));
+        ftfValorV.setText(formatarValorPTBR(venda.getTotalVenda()));
+    }
+    
+    public void montarCamposConsulta() {
+
+        Consulta consulta = ConsultaDAO.listarConsulta(id);
+
+        cbxClienteC.setSelectedItem(consulta.getCliente().getNomeC());
+        cbxPetC.setSelectedItem(consulta.getPet().getNomePet());
+        cbxVetC.setSelectedItem(consulta.getFuncionario().getNomeF());
+        ftfValorConC.setText(formatarValorPTBR(consulta.getValorConsulta()));
+        ftfValorMedC.setText(formatarValorPTBR(consulta.getValorMedicamentos()));
+        rtfObsC.setText(consulta.getObservacoes());
+    }
+    
+    public void montarCamposPet() {
+
+        Pet pet = PetDAO.listarPet(id);
+
+        rtfNomePetP.setText(pet.getNomePet());
+        cbxNomeTutorP.setSelectedItem(pet.getCliente().getNomeC());
+        cbxSexoP.setSelectedItem(pet.getSexoPet());
+        cbxEspecieP.setSelectedItem(pet.getEspecie().getNomeEspecie());
+        cbxRacaP.setSelectedItem(pet.getRaca().getNomeRaca());
+        ftfDataNascP.setText(Formatador.converterParaPTBR(pet.getDataNascPet()));
+    }
+    
+    public void montarCamposProduto() {
+
+        Produto produto = ProdutoDAO.listarProduto(id);
+
+        rtfNomeProdP.setText(produto.getNomeProd());
+        cbxUniVendaPro.setSelectedItem(produto.getUnVenda());
+        cbxMarcaPro.setSelectedItem(produto.getMarca().getNomeMarca());
+        cbxGrupoPro.setSelectedItem(produto.getGrupo().getNomeGrupo());
+        ftfValorPro.setText(formatarValorPTBR(produto.getValorProd()));
+        rtfDescPro.setText(produto.getDescricaoProd());
+    }
+    
+    public void montarCamposFuncionario() {
+
+        Funcionario funcionario = FuncionarioDAO.listarFuncionario(id);
+
+        rtfNomeFun.setText(funcionario.getNomeF());
+        ftfCpfFun.setText(funcionario.getCpfF());
+        cbxSexoFun.setSelectedItem(funcionario.getSexoF());
+        ftfTelFun.setText(funcionario.getTelefoneF());
+        rtfEndFun.setText(funcionario.getEnderecoF());
+        cbxCargoFun.setSelectedItem(funcionario.getCargoF());
+        rtfUsuFun.setText(funcionario.getLogin().getLogin());
+    }
+
+    public void montarCbxClienteConsulta() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Cliente cliente : listaCliente) {
+            modelo.addElement(cliente.getNomeC());
+        }
+
+        cbxClienteC.setModel(modelo);
+
+    }
+
+    public void montarCbxClienteVenda() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Cliente cliente : listaCliente) {
+            modelo.addElement(cliente.getNomeC());
+        }
+
+        cbxClienteV.setModel(modelo);
+
+    }
+
+    public void montarCbxGrupo() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Grupo grupo : listaGrupos) {
+            modelo.addElement(grupo.getNomeGrupo());
+        }
+
+        cbxGrupoPro.setModel(modelo);
+
+    }
+
+    public void montarCbxMarca() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Marca marca : listaMarcas) {
+            modelo.addElement(marca.getNomeMarca());
+        }
+
+        cbxMarcaPro.setModel(modelo);
+
+    }
+
+    public void montarCbxClientePet() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+
+        modelo.addElement(" ");
+        for (Cliente cliente : listaCliente) {
+            modelo.addElement(cliente.getNomeC());
+        }
+
+        cbxNomeTutorP.setModel(modelo);
+
+    }
+
+    public void montarCbxEspeciePet() {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Especie especie : listaEspecie) {
+            modelo.addElement(especie.getNomeEspecie());
+        }
+
+        cbxEspecieP.setModel(modelo);
+
+    }
+
+    public void montarCbxPetConsulta(List<Pet> listaPet) {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Pet pet : listaPet) {
+            modelo.addElement(pet.getNomePet());
+        }
+
+        cbxPetC.setModel(modelo);
+
+    }
+
+    public void montarCbxRaca(List<Raca> listaRacas) {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Raca raca : listaRacas) {
+            modelo.addElement(raca.getNomeRaca());
+        }
+
+        cbxRacaP.setModel(modelo);
+
+    }
+
+    public void montarCbxProduto() {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Produto produto : listaProdutos) {
+            modelo.addElement(produto.getNomeProd());
+        }
+
+        cbxProdutoV.setModel(modelo);
+
+    }
+
+    public void montarCbxVet(List<Funcionario> listaVet) {
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        for (Funcionario vet : listaVet) {
+            modelo.addElement(vet.getNomeF());
+        }
+
+        cbxVetC.setModel(modelo);
+
+    }
+
+    public void montarCampos(String tela) {
+
+        switch (tela) {
+            case "cardEditVendas" -> {
+                montarCamposVenda();
+            }
+            case "cardEditConsultas" -> {
+                montarCamposConsulta();
+            }
+            case "cardEditClientes" -> {
+                montarCamposCliente();
+            }
+            case "cardEditPets" -> {
+                montarCamposPet();
+            }
+            case "cardEditProdutos" -> {
+                montarCamposProduto();
+            }
+            case "cardEditFuncionarios" -> {
+                montarCamposFuncionario();
+            }
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1064,7 +1668,7 @@ public class TelaEdicao extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaEdicao dialog = new TelaEdicao(new javax.swing.JFrame(), true);
+                TelaEdicao dialog = new TelaEdicao(new javax.swing.JFrame(), true, null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -1098,6 +1702,8 @@ public class TelaEdicao extends javax.swing.JDialog {
     private Components.RoundedComboBox cbxSexoP;
     private Components.RoundedComboBox cbxUniVendaPro;
     private Components.RoundedComboBox cbxVetC;
+    private Components.RoundedFormattedTextField ftfCPFCli;
+    private Components.RoundedFormattedTextField ftfCpfFun;
     private Components.RoundedFormattedTextField ftfDataNascP;
     private Components.RoundedFormattedTextField ftfTelCli;
     private Components.RoundedFormattedTextField ftfTelFun;
@@ -1149,8 +1755,6 @@ public class TelaEdicao extends javax.swing.JDialog {
     private javax.swing.JLabel lblVetC;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelTelasEdit;
-    private Components.RoundedTextField rtfCPFCli;
-    private Components.RoundedTextField rtfCPFFun;
     private Components.RoundedTextField rtfDescPro;
     private Components.RoundedTextField rtfEndCli;
     private Components.RoundedTextField rtfEndFun;

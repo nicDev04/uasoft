@@ -12,14 +12,16 @@ telas\TelaPrincipal$11.class
 Components\RoundedComboBox$RoundedUI.class
 telas\TelaPrincipal$21.class
 telas\TelasCadastro$1.class
+telas\TelaPrincipal$31.class
+telas\TelaPrincipal$29.class
 ClassesDAO\ConsultaDAO.class
+telas\TelaEdicao$9.class
 telas\TelaPrincipal$14.class
 telas\TelasCadastro$9$1.class
 Classes\Venda.class
 Botoes\JCustomButton.class
 Classes\Especie.class
 Classes\Raca.class
-telas\TelaEdicao$7$1.class
 Components\RoundedPasswordField$RoundedUI.class
 telas\TelaPrincipal$17.class
 telas\TelaAviso$1.class
@@ -38,8 +40,10 @@ telas\TelaPrincipal$8.class
 Utilidades\Validacoes.class
 telas\TelasCadastro$9.class
 telas\TelaEdicao$6.class
+telas\TelaPrincipal$32.class
 telas\TelasCadastro.class
 telas\TelaLogin.class
+telas\TelaPrincipal$27.class
 ClassesDAO\FuncionarioDAO.class
 telas\TelaPrincipal$9.class
 telas\TelaEdicao$7.class
@@ -51,8 +55,10 @@ Botoes\JCustomButton2$ButtonStyle.class
 ClassesDAO\GrupoDAO.class
 ClassesDAO\EspecieDAO.class
 telas\TelaPrincipal$7.class
+telas\TelaEdicao$8.class
 telas\TelaPrincipal$18.class
 Components\RoundedTextField.class
+telas\TelaPrincipal$28.class
 telas\TelasCadastro$8.class
 telas\TelaPrincipal.class
 telas\TelaPrincipal$22.class
@@ -61,6 +67,7 @@ Classes\Funcionario.class
 ClassesDAO\RacaDAO.class
 telas\TelaEdicao$5.class
 telas\TelaPrincipal$10.class
+telas\TelaPrincipal$30.class
 telas\TelaPrincipal$4.class
 Utilidades\Alerta.class
 telas\TelasCadastro$2.class
@@ -68,6 +75,7 @@ telas\TelaEdicao$2.class
 telas\TelaPrincipal$25.class
 telas\TelasCadastro$5.class
 ClassesDAO\ProdutoDAO.class
+telas\TelaEdicao$9$1.class
 telas\TelaEdicao$3.class
 telas\TelaPrincipal$13.class
 telas\TelaPrincipal$23.class

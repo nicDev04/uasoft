@@ -23,6 +23,7 @@ Botoes\JCustomButton.class
 Classes\Especie.class
 Classes\Raca.class
 Components\RoundedPasswordField$RoundedUI.class
+Utilidades\Criptografia.class
 telas\TelaPrincipal$17.class
 telas\TelaAviso$1.class
 Utilidades\Formatador.class

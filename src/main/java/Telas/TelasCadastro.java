@@ -26,6 +26,8 @@ import ClassesDAO.ProdutoDAO;
 import ClassesDAO.RacaDAO;
 import ClassesDAO.VendaDAO;
 import Utilidades.Alerta;
+import Utilidades.Criptografia;
+import static Utilidades.Criptografia.toMD5;
 import Utilidades.Formatador;
 import Utilidades.Validacoes;
 import static Utilidades.Validacoes.formatarValor;
@@ -1305,7 +1307,7 @@ public class TelasCadastro extends javax.swing.JDialog {
             Login login = new Login();
 
             login.setLogin(rtfUsuFun.getText());
-            login.setSenha(rtfSenFun.getText());
+            login.setSenha(Criptografia.toMD5(rtfSenFun.getText()));
             funcionario.setNomeF(rtfNomeFun.getText());
             funcionario.setCpfF(Validacoes.formatarCPF(ftfCpfFun.getText()));
             funcionario.setSexoF(cbxSexoFun.getSelectedItem().toString());

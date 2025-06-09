@@ -23,6 +23,7 @@ import ClassesDAO.ProdutoDAO;
 import ClassesDAO.RacaDAO;
 import ClassesDAO.VendaDAO;
 import Utilidades.Alerta;
+import Utilidades.Criptografia;
 import Utilidades.Formatador;
 import static Utilidades.Formatador.formatarValorPTBR;
 import Utilidades.Validacoes;
@@ -1310,7 +1311,7 @@ public class TelaEdicao extends javax.swing.JDialog {
             Funcionario funcionario = FuncionarioDAO.listarFuncionario(id);
 
             funcionario.getLogin().setLogin(rtfUsuFun.getText());
-            funcionario.getLogin().setSenha(rtfSenFun.getText());
+            funcionario.getLogin().setSenha(Criptografia.toMD5(rtfSenFun.getText()));
             funcionario.setNomeF(rtfNomeFun.getText());
             funcionario.setCpfF(Validacoes.formatarCPF(ftfCpfFun.getText()));
             funcionario.setSexoF(cbxSexoFun.getSelectedItem().toString());

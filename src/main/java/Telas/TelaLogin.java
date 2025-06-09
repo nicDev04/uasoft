@@ -1,6 +1,9 @@
 package Telas;
 
+import Classes.Login;
+import ClassesDAO.LoginDAO;
 import Utilidades.Alerta;
+import Utilidades.Criptografia;
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -130,9 +133,17 @@ public class TelaLogin extends javax.swing.JFrame {
         } else if (senha.isBlank()) {
             Alerta.Erro("O campo Senha não pode ficar vazio, preencha-o!", "Campo Vazio!");
         } else {
-            new TelaPrincipal().setVisible(true);
-            dispose();
             
+            LoginDAO loginDAO = new LoginDAO();
+            if (loginDAO.usuario(rtfLogin.getText(), Criptografia.toMD5(senha)) == null) {
+                Alerta.Erro("Ocorreu um erro ao realizar o login", "Erro");
+            } else {
+                Login login = loginDAO.usuario(rtfLogin.getText(), Criptografia.toMD5(senha));
+
+                new TelaPrincipal().setVisible(true);
+                dispose();
+            }
+                       
         }
     }
 
